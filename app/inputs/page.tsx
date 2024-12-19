@@ -10,6 +10,11 @@ const FILES = [
   "input-with-select",
   "input-with-button",
   "password-input",
+  "input-with-clear-button",
+  "input-with-label-animation",
+  "timestamp",
+  "input-with-tags",
+  "input-with-tags-inner",
 ];
 
 export default async function InputsPage() {
@@ -21,7 +26,6 @@ export default async function InputsPage() {
             key={componentName}
             directory={DIR}
             componentName={componentName}
-            icon={<Home size={16} strokeWidth={2} aria-hidden="true" />}
           />
         );
       })}
