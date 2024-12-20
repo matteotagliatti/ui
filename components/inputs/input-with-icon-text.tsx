@@ -11,13 +11,13 @@ export default function InputWithIconText() {
         </span>
         <Input
           id="input-with-icon-text"
-          className="-me-px rounded-e-none ps-6 shadow-none"
+          className="rounded-e-none ps-6 shadow-none"
           placeholder="0.00"
           type="text"
         />
-        <span className="inline-flex items-center rounded-e-lg border border-input bg-background px-3 text-sm text-muted-foreground">
+        <div className="inline-flex items-center rounded-e-lg border border-input bg-background px-3 text-sm text-muted-foreground">
           EUR
-        </span>
+        </div>
       </div>
     </div>
   );
