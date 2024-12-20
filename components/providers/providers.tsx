@@ -1,4 +1,5 @@
 import { SidebarProvider } from "../ui/sidebar";
+import { ReactQueryProvider } from "./react-query-provider";
 import { ThemeProvider } from "./theme-provider";
 
 interface ProvidersProps {
@@ -14,9 +15,11 @@ export function Providers({ children, sidebarDefaultOpen }: ProvidersProps) {
       enableSystem
       disableTransitionOnChange
     >
-      <SidebarProvider defaultOpen={sidebarDefaultOpen}>
-        {children}
-      </SidebarProvider>
+      <ReactQueryProvider>
+        <SidebarProvider defaultOpen={sidebarDefaultOpen}>
+          {children}
+        </SidebarProvider>
+      </ReactQueryProvider>
     </ThemeProvider>
   );
 }

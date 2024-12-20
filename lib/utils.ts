@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-import { MENU_ITEMS } from "@/components/app-sidebar";
+import { MENU_ITEMS } from "@/components/demo/app-sidebar";
 
 export type BreadcrumbItem = {
   title: string;

@@ -1,5 +1,5 @@
 import DemoComponent from "@/components/demo/demo-component";
-import { Home } from "lucide-react";
+import { PageContainer } from "@/components/demo/page-container";
 
 const DIR = "inputs";
 const FILES = [
@@ -10,16 +10,26 @@ const FILES = [
   "input-with-select",
   "input-with-button",
   "password-input",
+  "password-input-with-infos",
   "input-with-clear-button",
   "input-with-label-animation",
+  "search-input",
+  "autocomplete",
+  "color-picker",
   "timestamp",
   "input-with-tags",
   "input-with-tags-inner",
+  "input-number-with-buttons",
+  // "time-input",
+  "date-picker",
+  "date-picker-range",
+  "phone-input",
+  "dropzone",
 ];
 
 export default async function InputsPage() {
   return (
-    <div className="grid grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12">
+    <PageContainer>
       {FILES.map((componentName) => {
         return (
           <DemoComponent
@@ -29,6 +39,6 @@ export default async function InputsPage() {
           />
         );
       })}
-    </div>
+    </PageContainer>
   );
 }

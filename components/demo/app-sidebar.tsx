@@ -11,7 +11,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { Command } from "lucide-react";
-
+import { CONSTANTS } from "@/lib/constants";
 export const MENU_ITEMS = [
   {
     title: "Form",
@@ -27,6 +27,10 @@ export const MENU_ITEMS = [
       {
         title: "Checkbox, Radio and Switch",
         href: "checks-radios-switches",
+      },
+      {
+        title: "Select",
+        href: "selects",
       },
     ],
   },
@@ -44,7 +48,7 @@ export function AppSidebar() {
                   <Command className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Components</span>
+                  <span className="font-semibold">{CONSTANTS.TITLE}</span>
                   <span className="">v{process.env.package_version}</span>
                 </div>
               </a>

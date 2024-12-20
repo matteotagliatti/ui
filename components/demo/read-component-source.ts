@@ -1,15 +1,17 @@
+"use server";
+
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
 export async function readComponentSource(
   directory: string,
-  componentName: string,
+  componentName: string
 ) {
   const filePath = path.join(
     process.cwd(),
     "components",
     directory,
-    `${componentName}.tsx`,
+    `${componentName}.tsx`
   );
   try {
     const source = await fs.readFile(filePath, "utf8");
