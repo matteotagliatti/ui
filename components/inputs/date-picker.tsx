@@ -27,7 +27,9 @@ export default function DatePickerInput() {
 
   return (
     <DatePicker className="space-y-2">
-      <Label className="text-sm font-medium text-foreground">Date picker</Label>
+      <Label className="text-sm font-medium text-foreground">
+        Smart Date picker
+      </Label>
       <div className="flex">
         <Group className="inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-lg border border-input bg-background px-3 py-2 pe-9 text-sm shadow-sm shadow-black/5 transition-shadow data-[focus-within]:border-ring data-[disabled]:opacity-50 data-[focus-within]:outline-none data-[focus-within]:ring-[3px] data-[focus-within]:ring-ring/20">
           <DateInput>

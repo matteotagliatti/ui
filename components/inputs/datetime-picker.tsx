@@ -331,7 +331,7 @@ export default function DateTimePickerDemo() {
   const [dateTime, setDateTime] = useState<Date | undefined>(undefined);
   return (
     <div className="space-y-2">
-      <Label>Date Time Picker</Label>
+      <Label>Smart Date Time Picker</Label>
       <DateTimePicker dateTime={dateTime} setDateTime={setDateTime} />
       <Description>
         Built with{" "}
