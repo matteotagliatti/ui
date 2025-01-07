@@ -38,8 +38,16 @@ export const MENU_ITEMS = [
     title: "Other",
     items: [
       {
+        title: "Popover",
+        href: "popover",
+      },
+      {
         title: "Carousels",
         href: "carousels",
+      },
+      {
+        title: "Texts",
+        href: "texts",
       },
     ],
   },
