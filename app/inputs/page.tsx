@@ -17,6 +17,7 @@ const FILES = [
   "autocomplete",
   "color-picker",
   "timestamp",
+  "tags-input",
   "input-with-tags",
   "input-with-tags-inner",
   "input-number-with-buttons",
@@ -28,6 +29,8 @@ const FILES = [
   "dropzone",
   "time-picker",
   "datetime-picker",
+  "datetime-picker-2",
+  "datetime-picker-3",
 ];
 
 export default async function InputsPage() {

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { usePathname } from "next/navigation";
-import { ChevronDownIcon, Slash } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { getBreadcrumb } from "@/lib/utils";
 import {
   Breadcrumb,
@@ -59,9 +59,7 @@ export function AppBreadcrumb() {
               )}
             </BreadcrumbItem>
             {index < breadcrumbItems.length - 1 && (
-              <BreadcrumbSeparator className="hidden md:block">
-                <Slash />
-              </BreadcrumbSeparator>
+              <BreadcrumbSeparator className="hidden md:block" />
             )}
           </React.Fragment>
         ))}
