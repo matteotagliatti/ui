@@ -87,7 +87,7 @@ export default function ColorPickerDemo() {
           target="_blank"
           rel="noopener nofollow"
         >
-          React Colorful
+          react-colorful
         </a>
       </Description>
     </div>
