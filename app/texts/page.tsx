@@ -8,6 +8,8 @@ const FILES = [
   "text-rotate",
   "underline-to-background",
   "typewriter",
+  "reveal",
+  "underline-animation",
 ];
 
 export default async function InputsPage() {
