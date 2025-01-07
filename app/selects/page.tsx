@@ -2,7 +2,7 @@ import DemoComponent from "@/components/demo/demo-component";
 import { PageContainer } from "@/components/demo/page-container";
 
 const DIR = "selects";
-const FILES = [""];
+const FILES = ["select-country", "select-pills", "select-currency"];
 
 export default async function InputsPage() {
   return (
