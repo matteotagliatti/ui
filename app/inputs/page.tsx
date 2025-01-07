@@ -20,11 +20,13 @@ const FILES = [
   "input-with-tags",
   "input-with-tags-inner",
   "input-number-with-buttons",
-  // "time-input",
+  // "time-input", hydration error in react aria time component
   "date-picker",
   "date-picker-range",
   "phone-input",
   "dropzone",
+  "time-picker",
+  "datetime-picker",
 ];
 
 export default async function InputsPage() {

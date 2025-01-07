@@ -34,6 +34,15 @@ export const MENU_ITEMS = [
       },
     ],
   },
+  {
+    title: "Other",
+    items: [
+      {
+        title: "Carousels",
+        href: "carousels",
+      },
+    ],
+  },
 ];
 
 export function AppSidebar() {
