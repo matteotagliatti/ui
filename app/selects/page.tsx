@@ -6,6 +6,7 @@ const FILES = [
   "select-country",
   "select-pills",
   "select-currency",
+  "multi-select",
   "combobox-single",
   "combobox-multi-select",
   "combobox-multi-select-demo",
