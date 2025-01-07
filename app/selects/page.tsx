@@ -10,6 +10,8 @@ const FILES = [
   "combobox-multi-select",
   "combobox-multi-select-demo",
   "combobox-multi-select-demo-2",
+  "async-select",
+  "async-select-with-preloader",
 ];
 
 export default async function InputsPage() {
