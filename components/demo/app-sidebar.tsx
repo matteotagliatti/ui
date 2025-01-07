@@ -21,16 +21,16 @@ export const MENU_ITEMS = [
         href: "inputs",
       },
       {
+        title: "Select",
+        href: "selects",
+      },
+      {
         title: "Button",
         href: "buttons",
       },
       {
         title: "Checkbox, Radio and Switch",
         href: "checks-radios-switches",
-      },
-      {
-        title: "Select",
-        href: "selects",
       },
     ],
   },
