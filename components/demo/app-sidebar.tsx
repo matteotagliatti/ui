@@ -49,6 +49,10 @@ export const MENU_ITEMS = [
         title: "Texts",
         href: "texts",
       },
+      {
+        title: "Data List",
+        href: "data-list",
+      },
     ],
   },
 ];
