@@ -10,9 +10,11 @@ const FILES = [
   "typewriter",
   "reveal",
   "underline-animation",
+  "text-morph-button",
+  "text-morph-input",
 ];
 
-export default async function InputsPage() {
+export default async function TextsPage() {
   return (
     <PageContainer>
       {FILES.map((componentName) => {
