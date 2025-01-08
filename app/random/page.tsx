@@ -15,6 +15,7 @@ const FILES = [
   "tilt-card",
   "data-list-horizontal",
   "data-list-vertical",
+  "animated-circular-progress-bar",
 ];
 
 export default async function OthersPage() {
