@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/demo/page-container";
 const DIR = "popovers";
 const FILES = [
   "popover-with-form",
+  "popover-with-form-2",
   "popover-with-menu",
   "floating-action-panel-simple",
 ];
