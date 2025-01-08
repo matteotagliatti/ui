@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import CopyButton from "./copy-button";
 import { readComponentSource } from "./read-component-source";
+import ComponentDetails from "./demo-component-details";
+import { CodeBlock } from "./code-block";
 
 interface DemoComponentProps {
   directory: string;
@@ -22,7 +24,14 @@ export default async function DemoComponent({
   return (
     <div className={cn("group/item relative", className)}>
       <Component {...props} />
-      <CopyButton componentSource={source || ""} />
+      <div className="absolute right-2 top-2 flex gap-2">
+        <ComponentDetails name={componentName}>
+          <div className="relative">
+            <CodeBlock lang="tsx">{source || ""}</CodeBlock>
+            <CopyButton componentSource={source || ""} />
+          </div>
+        </ComponentDetails>
+      </div>
     </div>
   );
 }

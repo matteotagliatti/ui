@@ -1,5 +1,7 @@
 "use client";
 
+import { useCopy } from "@/hooks/use-copy";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -7,49 +9,33 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 
-interface CopyButtonProps {
+const CopyButton = ({
+  componentSource,
+  className,
+}: {
   componentSource: string;
-}
-
-function CopyButton({ componentSource }: CopyButtonProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(componentSource);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
-    }
-  };
+  className?: string;
+}) => {
+  const { copied, copy } = useCopy();
 
   return (
-    <div
-      className={cn(
-        "absolute right-2 top-2 transition-opacity",
-        !copied &&
-          "lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100",
-      )}
-    >
+    <div className={cn("dark absolute right-2 top-2", className)}>
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="text-muted-foreground/80 hover:bg-transparent hover:text-foreground disabled:opacity-100"
-              onClick={handleCopy}
+              className="text-muted-foreground transition-none hover:bg-transparent hover:text-foreground disabled:opacity-100"
+              onClick={() => copy(componentSource)}
               aria-label={copied ? "Copied" : "Copy component source"}
               disabled={copied}
             >
               <div
                 className={cn(
                   "transition-all",
-                  copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
+                  copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
                 )}
               >
                 <svg
@@ -68,7 +54,7 @@ function CopyButton({ componentSource }: CopyButtonProps) {
               <div
                 className={cn(
                   "absolute transition-all",
-                  copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
+                  copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
                 )}
               >
                 <svg
@@ -91,6 +77,6 @@ function CopyButton({ componentSource }: CopyButtonProps) {
       </TooltipProvider>
     </div>
   );
-}
+};
 
 export default CopyButton;
