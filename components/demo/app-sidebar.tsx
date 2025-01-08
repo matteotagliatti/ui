@@ -46,24 +46,24 @@ export const MENU_ITEMS = [
         href: "popover",
       },
       {
-        title: "Carousels",
-        href: "carousels",
+        title: "Navbar",
+        href: "navbar",
       },
       {
         title: "Texts",
         href: "texts",
       },
       {
+        title: "Carousels",
+        href: "carousels",
+      },
+      {
         title: "Animated Background",
         href: "animated-background",
       },
       {
-        title: "Others",
-        href: "others",
-      },
-      {
-        title: "Data List",
-        href: "data-list",
+        title: "Random",
+        href: "random",
       },
     ],
   },

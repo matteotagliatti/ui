@@ -46,7 +46,7 @@ const ComponentDetails = ({
       </TooltipProvider>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-left">Code</DialogTitle>
+          <DialogTitle className="text-left">{name}</DialogTitle>
         </DialogHeader>
         <div className="min-w-0">{children}</div>
       </DialogContent>

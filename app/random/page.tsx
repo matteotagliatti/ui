@@ -1,26 +1,25 @@
 import DemoComponent from "@/components/demo/demo-component";
 import { PageContainer } from "@/components/demo/page-container";
 
-const DIR = "others";
+const DIR = "random";
 const FILES = [
   "disclosure-simple",
   "disclosure-custom",
   "tabs-with-transition-panel",
   "card-with-transition-panel",
-  "basic-in-view",
   "image-comparison-basic",
   "image-comparison-with-hover",
-  "toggle-dynamic",
-  "toggle-expandable",
   "scroll-progress-basic",
   "scroll-progress-gradient",
+  "basic-in-view",
   "tilt-card",
-  "apple-dock",
+  "data-list-horizontal",
+  "data-list-vertical",
 ];
 
 export default async function OthersPage() {
   return (
-    <PageContainer>
+    <PageContainer className="lg:grid-cols-2">
       {FILES.map((componentName) => {
         return (
           <DemoComponent

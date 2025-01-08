@@ -1,12 +1,12 @@
 import DemoComponent from "@/components/demo/demo-component";
 import { PageContainer } from "@/components/demo/page-container";
 
-const DIR = "data-list";
-const FILES = ["data-list-horizontal", "data-list-vertical"];
+const DIR = "navbar";
+const FILES = ["toggle-dynamic", "toggle-expandable", "apple-dock"];
 
-export default async function InputsPage() {
+export default async function NavbarPage() {
   return (
-    <PageContainer className="lg:grid-cols-2">
+    <PageContainer>
       {FILES.map((componentName) => {
         return (
           <DemoComponent

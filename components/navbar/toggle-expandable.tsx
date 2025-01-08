@@ -189,7 +189,7 @@ export function ToolbarExpandable() {
 
 export default function ToggleExpandableDemo() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center pt-40">
       <ToolbarExpandable />
     </div>
   );
