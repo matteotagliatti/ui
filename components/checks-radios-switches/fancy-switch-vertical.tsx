@@ -12,7 +12,7 @@ const options = [
 export default function FancySwitchVertical() {
   return (
     <div className="space-y-2 w-8/12">
-      <Label>Fancy Switch Vertical</Label>
+      {/* <Label>Fancy Switch Vertical</Label> */}
       <FancySwitch
         options={options}
         className="rounded-xl bg-muted p-2"

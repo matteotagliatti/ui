@@ -1,6 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,8 +11,11 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { Command } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { CONSTANTS } from "@/lib/constants";
+import { Command } from "lucide-react";
+import SidebarUser from "./sidebar-user";
+
 export const MENU_ITEMS = [
   {
     title: "Form",
@@ -109,6 +113,9 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarUser />
+      </SidebarFooter>
     </Sidebar>
   );
 }

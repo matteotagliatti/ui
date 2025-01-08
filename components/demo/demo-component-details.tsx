@@ -24,7 +24,7 @@ const ComponentDetails = ({
 }) => {
   return (
     <Dialog>
-      <TooltipProvider delayDuration={0}>
+      <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <span>

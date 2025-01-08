@@ -9,7 +9,7 @@ export default function FancySwitchHorizontal() {
   return (
     <div className="flex items-center justify-center">
       <div className="space-y-2 w-fit">
-        <Label>Fancy Switch Horizontal</Label>
+        {/* <Label>Fancy Switch Horizontal</Label> */}
         <FancySwitch
           options={options}
           data-testid="orderType"
