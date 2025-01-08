@@ -15,6 +15,7 @@ const FILES = [
   "scroll-progress-basic",
   "scroll-progress-gradient",
   "tilt-card",
+  "apple-dock",
 ];
 
 export default async function OthersPage() {
