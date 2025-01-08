@@ -50,6 +50,14 @@ export const MENU_ITEMS = [
         href: "texts",
       },
       {
+        title: "Animated Background",
+        href: "animated-background",
+      },
+      {
+        title: "Others",
+        href: "others",
+      },
+      {
         title: "Data List",
         href: "data-list",
       },

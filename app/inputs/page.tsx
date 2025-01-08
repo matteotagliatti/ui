@@ -35,7 +35,7 @@ const FILES = [
 
 export default async function InputsPage() {
   return (
-    <PageContainer>
+    <PageContainer className="pb-[10rem]">
       {FILES.map((componentName) => {
         return (
           <DemoComponent
