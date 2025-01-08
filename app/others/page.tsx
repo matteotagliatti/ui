@@ -7,6 +7,14 @@ const FILES = [
   "disclosure-custom",
   "tabs-with-transition-panel",
   "card-with-transition-panel",
+  "basic-in-view",
+  "image-comparison-basic",
+  "image-comparison-with-hover",
+  "toggle-dynamic",
+  "toggle-expandable",
+  "scroll-progress-basic",
+  "scroll-progress-gradient",
+  "tilt-card",
 ];
 
 export default async function OthersPage() {
