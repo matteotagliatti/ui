@@ -66,6 +66,10 @@ export const MENU_ITEMS = [
         href: "animated-background",
       },
       {
+        title: "Bento",
+        href: "bento",
+      },
+      {
         title: "Random",
         href: "random",
       },
