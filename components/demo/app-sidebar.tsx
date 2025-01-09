@@ -58,6 +58,10 @@ export const MENU_ITEMS = [
         href: "texts",
       },
       {
+        title: "Sortable",
+        href: "sortable",
+      },
+      {
         title: "Carousels",
         href: "carousels",
       },
