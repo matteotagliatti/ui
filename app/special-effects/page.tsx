@@ -1,24 +1,8 @@
 import DemoComponent from "@/components/demo/demo-component";
 import { PageContainer } from "@/components/demo/page-container";
 
-const DIR = "random";
-const FILES = [
-  "disclosure-simple",
-  "disclosure-custom",
-  "tabs-with-transition-panel",
-  "card-with-transition-panel",
-  "image-comparison-basic",
-  "image-comparison-with-hover",
-  "scroll-progress-basic",
-  "scroll-progress-gradient",
-  "basic-in-view",
-  "tilt-card",
-  "data-list-horizontal",
-  "data-list-vertical",
-  "animated-circular-progress-bar",
-  "blur-fade",
-  "animated-list",
-];
+const DIR = "special-effects";
+const FILES = ["shine-border", "magic-card", "scratch-to-reveal"];
 
 export default async function OthersPage() {
   return (

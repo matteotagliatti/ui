@@ -58,6 +58,10 @@ export const MENU_ITEMS = [
         href: "texts",
       },
       {
+        title: "Special Effects",
+        href: "special-effects",
+      },
+      {
         title: "Sortable",
         href: "sortable",
       },
