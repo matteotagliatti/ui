@@ -12,6 +12,9 @@ const FILES = [
   "underline-animation",
   "text-morph-button",
   "text-morph-input",
+  "text-animate",
+  "number-ticker",
+  "text-morph",
 ];
 
 export default async function TextsPage() {
