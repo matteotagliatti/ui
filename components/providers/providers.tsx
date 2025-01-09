@@ -1,3 +1,4 @@
+import { ProgressBarProvider } from "../progress-bar/progress-bar";
 import { SidebarProvider } from "../ui/sidebar";
 import { ReactQueryProvider } from "./react-query-provider";
 import { ThemeProvider } from "./theme-provider";
@@ -16,9 +17,11 @@ export function Providers({ children, sidebarDefaultOpen }: ProvidersProps) {
       disableTransitionOnChange
     >
       <ReactQueryProvider>
-        <SidebarProvider defaultOpen={sidebarDefaultOpen}>
-          {children}
-        </SidebarProvider>
+        <ProgressBarProvider>
+          <SidebarProvider defaultOpen={sidebarDefaultOpen}>
+            {children}
+          </SidebarProvider>
+        </ProgressBarProvider>
       </ReactQueryProvider>
     </ThemeProvider>
   );

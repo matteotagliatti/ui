@@ -74,6 +74,10 @@ export const MENU_ITEMS = [
         href: "bento",
       },
       {
+        title: "Progress Bar",
+        href: "progress-bar",
+      },
+      {
         title: "Random",
         href: "random",
       },

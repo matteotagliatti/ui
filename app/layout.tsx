@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import * as React from "react";
 import "./globals.css";
 import { CONSTANTS } from "@/lib/constants";
+import { ProgressBar } from "@/components/progress-bar/progress-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default async function RootLayout({
       >
         <Providers sidebarDefaultOpen={sidebarDefaultOpen}>
           <AppSidebar />
+          <ProgressBar />
           <SidebarInset>
             <header className="flex h-16 shrink-0 items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
