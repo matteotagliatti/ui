@@ -26,6 +26,7 @@ const FILES = [
   "date-picker-range",
   "phone-input",
   "phone-input-with-search",
+  "phone-input-with-search2",
   "dropzone",
   "time-picker",
   "datetime-picker",
