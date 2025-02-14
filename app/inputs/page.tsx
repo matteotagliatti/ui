@@ -31,7 +31,6 @@ const FILES = [
   "time-picker",
   "datetime-picker",
   "datetime-picker-2",
-  "datetime-picker-3",
 ];
 
 export default async function InputsPage() {
