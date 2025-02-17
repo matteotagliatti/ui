@@ -7,6 +7,7 @@ const FILES = [
   "popover-with-form-2",
   "popover-with-menu",
   "floating-action-panel-simple",
+  "morphing-popover-basic",
 ];
 
 export default async function InputsPage() {
