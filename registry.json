@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "button-action",
+      "type": "registry:component",
+      "files": [
+        {
+          "path": "registry/default/button-action.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
