@@ -4,11 +4,14 @@
   "homepage": "https://acme.com",
   "items": [
     {
-      "name": "button-action",
+      "name": "button-loading",
       "type": "registry:component",
+      "title": "Button Loading",
+      "description": "A button loading component",
+      "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/default/button-action.tsx",
+          "path": "registry/default/components/button-loading.tsx",
           "type": "registry:component"
         }
       ]

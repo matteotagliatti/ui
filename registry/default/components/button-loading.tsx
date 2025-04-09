@@ -1,25 +1,27 @@
+"use client";
+
 import { LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VariantProps } from "class-variance-authority";
-import { Button } from "../ui/button";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
-interface props
+interface Props
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
-  isPending: boolean;
+  isLoading: boolean;
   onClick?: () => void;
 }
 
-export function ActionButton({
+export default function ButtonLoading({
+  type = "button",
   children,
-  isPending,
+  isLoading,
   variant,
   size,
   className,
   onClick,
-}: props) {
+}: Props) {
   return (
     <Button
       onClick={
@@ -30,28 +32,28 @@ export function ActionButton({
             }
           : undefined
       }
-      type="submit"
-      disabled={isPending}
+      type={type}
+      disabled={isLoading}
       variant={variant}
       size={size}
       className={cn(
         className,
-        "inline-grid place-items-center [grid-template-areas:'stack']",
+        "inline-grid place-items-center [grid-template-areas:'stack']"
       )}
     >
       <span
         className={cn(
-          isPending && "invisible",
-          "flex items-center gap-2 [grid-area:stack]",
+          isLoading && "invisible",
+          "flex items-center gap-2 [grid-area:stack]"
         )}
       >
         {children}
       </span>
       <LoaderCircle
-        aria-label="Submitting"
+        aria-label="loading"
         className={cn(
-          isPending ? "visible" : "invisible",
-          "size-5 animate-spin transition-opacity [grid-area:stack]",
+          isLoading ? "visible" : "invisible",
+          "size-5 animate-spin transition-opacity [grid-area:stack]"
         )}
       />
     </Button>

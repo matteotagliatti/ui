@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-loading",
+  "type": "registry:component",
+  "title": "Button Loading",
+  "description": "A button loading component",
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/button-loading.tsx",
+      "content": "\"use client\";\n\nimport { LoaderCircle } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { VariantProps } from \"class-variance-authority\";\nimport { Button, buttonVariants } from \"@/components/ui/button\";\n\ninterface Props\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  children: React.ReactNode;\n  isLoading: boolean;\n  onClick?: () => void;\n}\n\nexport function ButtonLoading({\n  type = \"button\",\n  children,\n  isLoading,\n  variant,\n  size,\n  className,\n  onClick,\n}: Props) {\n  return (\n    <Button\n      onClick={\n        onClick\n          ? (e: React.MouseEvent<HTMLButtonElement>) => {\n              e.preventDefault();\n              onClick();\n            }\n          : undefined\n      }\n      type={type}\n      disabled={isLoading}\n      variant={variant}\n      size={size}\n      className={cn(\n        className,\n        \"inline-grid place-items-center [grid-template-areas:'stack']\"\n      )}\n    >\n      <span\n        className={cn(\n          isLoading && \"invisible\",\n          \"flex items-center gap-2 [grid-area:stack]\"\n        )}\n      >\n        {children}\n      </span>\n      <LoaderCircle\n        aria-label=\"loading\"\n        className={cn(\n          isLoading ? \"visible\" : \"invisible\",\n          \"size-5 animate-spin transition-opacity [grid-area:stack]\"\n        )}\n      />\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}
