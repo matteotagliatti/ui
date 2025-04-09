@@ -1,4 +1,4 @@
-import ComponentLoader from "@/components/component-loader";
+import { Component } from "@/components/component";
 import { PageGrid } from "@/components/page-grid";
 import { categories } from "@/lib/const";
 import { getCategory, getComponentsByNames } from "@/lib/utils";
@@ -26,7 +26,11 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <PageGrid>
       {components.map((component) => (
-        <ComponentLoader key={component.name} component={component} />
+        <Component
+          key={component.name}
+          component={component}
+          category={category}
+        />
       ))}
     </PageGrid>
   );
