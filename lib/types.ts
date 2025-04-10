@@ -1,4 +1,8 @@
+export enum Category {
+  Button = "button",
+}
+
 export interface ComponentCategory {
-  slug: string;
+  slug: Category;
   name: string;
 }

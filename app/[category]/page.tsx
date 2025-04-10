@@ -2,10 +2,11 @@ import { Component } from "@/components/component";
 import { PageGrid } from "@/components/page-grid";
 import { categories } from "@/lib/const";
 import { getCategory, getComponentsByCategory } from "@/lib/utils";
+import { Category } from "@/lib/types";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: Promise<{ category: string }>;
+  params: Promise<{ category: Category }>;
 }
 
 export async function generateStaticParams() {
