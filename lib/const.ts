@@ -1,6 +1,5 @@
 import registry from "@/registry.json";
-import { Category, ComponentCategory } from "./types";
-import { RegistryItem } from "shadcn/registry";
+import { Category, ComponentCategory, MyRegistryItem } from "./types";
 
 export const categories: ComponentCategory[] = [
   {
@@ -9,6 +8,4 @@ export const categories: ComponentCategory[] = [
   },
 ];
 
-export const components = registry.items as unknown as (RegistryItem & {
-  category: Category;
-})[];
+export const components = registry.items as unknown as MyRegistryItem[];

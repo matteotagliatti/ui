@@ -23,24 +23,26 @@ export function ComponentDetails({ name, children }: Props) {
   return (
     <Dialog>
       <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span>
-              <DialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground/80 transition-none hover:bg-transparent hover:text-foreground disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100"
-                >
-                  <Code size={16} strokeWidth={2} aria-hidden={true} />
-                </Button>
-              </DialogTrigger>
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="px-2 py-1 text-xs text-muted-foreground">
-            View code
-          </TooltipContent>
-        </Tooltip>
+        <div className="absolute right-2 top-2 flex gap-2">
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <span>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-muted-foreground/80 hover:bg-transparent hover:text-foreground disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100"
+                  >
+                    <Code size={16} strokeWidth={2} aria-hidden={true} />
+                  </Button>
+                </DialogTrigger>
+              </span>
+            </TooltipTrigger>
+            <TooltipContent className="px-2 py-1 text-xs">
+              View code
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </TooltipProvider>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>

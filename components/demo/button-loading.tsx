@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonLoading } from "@/registry/default/components/button-loading";
 import { useState } from "react";
 

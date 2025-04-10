@@ -17,11 +17,7 @@ export async function generateStaticParams() {
 
 export default async function CategoryPage({ params }: Props) {
   const category = getCategory((await params).category);
-
-  if (!category) {
-    return notFound();
-  }
-
+  if (!category) return notFound();
   const components = getComponentsByCategory(category.slug);
 
   return (
