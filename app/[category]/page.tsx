@@ -1,7 +1,7 @@
 import { Component } from "@/components/component";
 import { PageGrid } from "@/components/page-grid";
 import { categories } from "@/lib/const";
-import { getCategory, getComponentsByNames } from "@/lib/utils";
+import { getCategory, getComponentsByCategory } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -21,16 +21,12 @@ export default async function CategoryPage({ params }: Props) {
     return notFound();
   }
 
-  const components = getComponentsByNames(category.components);
+  const components = getComponentsByCategory(category.slug);
 
   return (
     <PageGrid>
       {components.map((component) => (
-        <Component
-          key={component.name}
-          component={component}
-          category={category}
-        />
+        <Component key={component.name} component={component} />
       ))}
     </PageGrid>
   );

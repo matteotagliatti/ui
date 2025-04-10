@@ -10,8 +10,7 @@ export async function readComponentSource(componentName: string) {
     `${componentName}.tsx`
   );
   try {
-    const source = await fs.readFile(filePath, "utf8");
-    return source;
+    return await fs.readFile(filePath, "utf8");
   } catch (error) {
     console.error(`Error reading file ${filePath}:`, error);
     return null;

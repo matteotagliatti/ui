@@ -8,6 +8,7 @@
       "type": "registry:component",
       "title": "Button Loading",
       "description": "A button loading component",
+      "category": "button",
       "registryDependencies": ["button"],
       "files": [
         {

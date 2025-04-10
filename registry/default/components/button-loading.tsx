@@ -13,7 +13,7 @@ interface Props
   onClick?: () => void;
 }
 
-export default function ButtonLoading({
+export function ButtonLoading({
   type = "button",
   children,
   isLoading,

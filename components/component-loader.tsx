@@ -14,12 +14,8 @@ export default async function ComponentLoader<TProps extends object>({
   }
 
   try {
-    const Component = (
-      await import(`@/registry/default/components/${component.name}`)
-    ).default as ComponentType<TProps>;
-
-    console.log(Component);
-
+    const Component = (await import(`@/components/demo/${component.name}`))
+      .default as ComponentType<TProps>;
     return <Component {...(props as TProps)} />;
   } catch (error) {
     console.error(`Failed to load component ${component.name}:`, error);
