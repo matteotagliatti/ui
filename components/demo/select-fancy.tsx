@@ -1,12 +1,12 @@
 "use client";
 
-import {
-  SelectOption,
-  SelectFancy,
-} from "@/registry/default/components/select-fancy";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
+import {
+  SelectFancy,
+  SelectOption,
+} from "@/registry/default/components/select-fancy";
 import { User } from "lucide-react";
+import { useState } from "react";
 
 export default function CountryDropdownDemo() {
   const options = [
@@ -28,7 +28,7 @@ export default function CountryDropdownDemo() {
   const [selectedAsync, setSelectedAsync] = useState<SelectOption | null>(null);
 
   return (
-    <div className="space-y-8 w-[300px]">
+    <div className="space-y-8 w-72">
       <div className="space-y-2">
         <Label>Fancy Select (single)</Label>
         <SelectFancy
@@ -49,6 +49,9 @@ export default function CountryDropdownDemo() {
           }}
           options={options}
         />
+      </div>
+      <div className="space-y-2">
+        <Label>Fancy Select (async)</Label>
         <SelectFancy
           isAsync
           value={selectedAsync?.value}

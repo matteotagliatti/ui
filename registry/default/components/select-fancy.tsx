@@ -1,13 +1,5 @@
 "use client";
 
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
-import { useDebounce } from "@/registry/default/hooks/use-debounce";
 import {
   Command,
   CommandEmpty,
@@ -22,12 +14,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useDebounce } from "@/registry/default/hooks/use-debounce";
 import {
+  CheckIcon,
   ChevronDown,
   ChevronsUpDown,
-  CheckIcon,
   LoaderCircle,
 } from "lucide-react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 export type SelectOption = {
   value: string;
@@ -107,10 +107,14 @@ export function SelectFancy({
   const displayOptions = useMemo(() => {
     if (isAsync) {
       if (debouncedSearch) {
+        console.log("asyncOptions", asyncOptions);
         return asyncOptions;
       }
+
       return options;
     }
+
+    console.log("searchQuery", searchQuery);
 
     if (!searchQuery) {
       return options;
@@ -118,7 +122,14 @@ export function SelectFancy({
     return options.filter((option) =>
       option.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  }, [isAsync, asyncOptions, options, searchQuery, debouncedSearch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    isAsync,
+    asyncOptions,
+    options,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    ...(isAsync ? [debouncedSearch] : [searchQuery]),
+  ]);
 
   useEffect(() => {
     if (!isAsync) {
@@ -296,6 +307,7 @@ export function SelectFancy({
         <Command
           key={forceUpdateKey}
           className="w-full max-h-[200px] sm:max-h-[270px]"
+          shouldFilter={!isAsync}
         >
           <CommandList>
             <div className="sticky top-0 z-10 bg-popover">
