@@ -14,3 +14,10 @@ export function getCategory(slug: string): ComponentCategory | undefined {
 export function getComponentsByCategory(category: Category): MyRegistryItem[] {
   return components.filter((component) => component.category === category);
 }
+
+export const convertRegistryPaths = (content: string) => {
+  return content
+    .replace(/@\/registry\/default\/components/g, "@/components")
+    .replace(/@\/registry\/default\/hooks/g, "@/hooks")
+    .replace(/@\/registry\/default\/lib/g, "@/lib");
+};

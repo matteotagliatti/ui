@@ -17,6 +17,53 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:component",
+      "title": "Button Group",
+      "description": "A button group component",
+      "category": "button",
+      "usage": true,
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["button", "utils"],
+      "files": [
+        {
+          "path": "registry/default/components/button-group.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "switch-fancy",
+      "type": "registry:component",
+      "title": "Switch Fancy",
+      "description": "A switch component with a fancy design",
+      "category": "input",
+      "usage": true,
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/switch-fancy.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "select-fancy",
+      "type": "registry:component",
+      "title": "Select Fancy",
+      "description": "A fancy select component with a search input, single and multiple select",
+      "category": "input",
+      "usage": true,
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "command", "popover"],
+      "files": [
+        {
+          "path": "registry/default/components/select-fancy.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

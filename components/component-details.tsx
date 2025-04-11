@@ -25,7 +25,7 @@ export function ComponentDetails({ component, children }: Props) {
     <Dialog>
       <TooltipProvider>
         <div className="absolute right-2 top-2 flex gap-2">
-          <Tooltip delayDuration={0}>
+          <Tooltip>
             <TooltipTrigger asChild>
               <span>
                 <DialogTrigger asChild>
@@ -49,7 +49,7 @@ export function ComponentDetails({ component, children }: Props) {
         <DialogHeader>
           <DialogTitle className="text-left">{component.title}</DialogTitle>
         </DialogHeader>
-        <div className="min-w-0 space-y-4">{children}</div>
+        <div className="min-w-0 space-y-2">{children}</div>
       </DialogContent>
     </Dialog>
   );

@@ -20,7 +20,7 @@ export const CopyButton = ({ componentSource, className }: Props) => {
 
   return (
     <div className={cn("dark absolute top-2 right-2", className)}>
-      <TooltipProvider delayDuration={0}>
+      <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button

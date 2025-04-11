@@ -12,6 +12,7 @@ export function ComponentCard({ children, component, className }: Props) {
   function getComponentCardClassName() {
     switch (component.category) {
       case Category.Button:
+      case Category.Input:
         return "flex items-center justify-center";
       default:
         return "";

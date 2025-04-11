@@ -2,15 +2,24 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { ComponentPath } from "./types";
+import { convertRegistryPaths } from "./utils";
 
-export async function readComponentSource(componentName: string) {
+export async function readComponentSource(
+  componentName: string,
+  componentPath: ComponentPath
+) {
   const filePath = path.join(
     process.cwd(),
-    "registry/default/components",
+    componentPath,
     `${componentName}.tsx`
   );
   try {
-    return await fs.readFile(filePath, "utf8");
+    const content = await fs.readFile(filePath, "utf8");
+    if (componentPath === ComponentPath.demo) {
+      return convertRegistryPaths(content);
+    }
+    return content;
   } catch (error) {
     console.error(`Error reading file ${filePath}:`, error);
     return null;
