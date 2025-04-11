@@ -112,7 +112,6 @@ export function SelectFancy({
       return options;
     }
 
-    // Non-async mode remains the same
     if (!searchQuery) {
       return options;
     }
@@ -131,14 +130,11 @@ export function SelectFancy({
       try {
         const results = await onSearch(debouncedSearch);
 
-        // Check if input is focused
-        const wasFocused = document.activeElement === inputRef.current;
+        const wasFocused = document.activeElement === inputRef.current; // Check if input is focused
 
-        // Set the options
         setAsyncOptions(results || []);
 
-        // Force a re-render and remember to focus
-        setForceUpdateKey((prev) => prev + 1);
+        setForceUpdateKey((prev) => prev + 1); // Force a re-render and remember to focus
         if (wasFocused) {
           setShouldFocus(true);
         }
