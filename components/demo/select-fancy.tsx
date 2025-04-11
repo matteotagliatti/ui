@@ -15,17 +15,24 @@ export default function CountryDropdownDemo() {
     { label: "Option 3", value: "option3", icon: <User /> },
   ];
 
+  const options2 = [
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
+  ];
+
   const [selectedSingle, setSelectedSingle] = useState<SelectOption | null>(
     null
   );
   const [selectedMultiple, setSelectedMultiple] = useState<SelectOption[]>([]);
+  const [selectedAsync, setSelectedAsync] = useState<SelectOption | null>(null);
 
   return (
     <div className="space-y-8 w-[300px]">
       <div className="space-y-2">
         <Label>Fancy Select (single)</Label>
         <SelectFancy
-          defaultValue={selectedSingle?.value}
+          value={selectedSingle?.value}
           onChange={(option) => {
             setSelectedSingle(option);
           }}
@@ -36,11 +43,28 @@ export default function CountryDropdownDemo() {
         <Label>Fancy Select (multiple)</Label>
         <SelectFancy
           multiple={true}
-          defaultValue={selectedMultiple.map((option) => option.value)}
+          value={selectedMultiple.map((option) => option.value)}
           onChange={(options) => {
             setSelectedMultiple(options);
           }}
           options={options}
+        />
+        <SelectFancy
+          isAsync
+          value={selectedAsync?.value}
+          onSearch={async (query: string) => {
+            const response = await fetch(
+              `/api/select-options?q=${encodeURIComponent(query)}`
+            );
+            const data = await response.json();
+            return data;
+          }}
+          debounceMs={500}
+          onChange={(option) => {
+            setSelectedAsync(option);
+          }}
+          placeholder="Search users..."
+          options={options2}
         />
       </div>
     </div>

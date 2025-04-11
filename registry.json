@@ -4,6 +4,19 @@
   "homepage": "https://acme.com",
   "items": [
     {
+      "name": "use-debounce",
+      "type": "registry:hook",
+      "title": "Use Debounce",
+      "description": "A hook to debounce a value",
+      "category": "hooks",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-debounce.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",

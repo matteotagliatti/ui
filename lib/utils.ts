@@ -12,7 +12,10 @@ export function getCategory(slug: string): ComponentCategory | undefined {
 }
 
 export function getComponentsByCategory(category: Category): MyRegistryItem[] {
-  return components.filter((component) => component.category === category);
+  return components.filter(
+    (component) =>
+      component.category === category && component.type === "registry:component"
+  );
 }
 
 export const convertRegistryPaths = (content: string) => {

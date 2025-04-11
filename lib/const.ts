@@ -13,4 +13,6 @@ export const categories: ComponentCategory[] = [
   },
 ];
 
-export const components = registry.items as unknown as MyRegistryItem[];
+export const components = registry.items.filter(
+  (item) => item.type === "registry:component"
+) as unknown as MyRegistryItem[];

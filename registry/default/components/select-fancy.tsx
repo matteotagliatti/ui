@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useCallback, useState, useEffect } from "react";
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { useDebounce } from "@/registry/default/hooks/use-debounce";
 import {
   Command,
   CommandEmpty,
@@ -15,7 +22,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronsUpDown, CheckIcon } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronsUpDown,
+  CheckIcon,
+  LoaderCircle,
+} from "lucide-react";
 
 export type SelectOption = {
   value: string;
@@ -24,8 +36,21 @@ export type SelectOption = {
   disabled?: boolean;
 };
 
-type BaseSelectFancyProps = {
+type AsyncProps = {
+  isAsync: true;
+  onSearch: (query: string) => Promise<SelectOption[]>;
+  debounceMs?: number;
+  options?: SelectOption[];
+};
+
+type SyncProps = {
+  isAsync?: false;
+  onSearch?: never;
+  debounceMs?: never;
   options: SelectOption[];
+};
+
+type BaseSelectFancyProps = {
   disabled?: boolean;
   placeholder?: string;
   slim?: boolean;
@@ -34,26 +59,26 @@ type BaseSelectFancyProps = {
   emptyMessage?: string;
   renderOption?: (option: SelectOption, isSelected: boolean) => React.ReactNode;
   renderSelected?: (option: SelectOption | SelectOption[]) => React.ReactNode;
-};
+} & (AsyncProps | SyncProps);
 
 type SingleSelectProps = BaseSelectFancyProps & {
   multiple?: false;
   onChange?: (option: SelectOption) => void;
-  defaultValue?: string;
+  value?: string;
 };
 
 type MultipleSelectProps = BaseSelectFancyProps & {
   multiple: true;
   onChange: (options: SelectOption[]) => void;
-  defaultValue?: string[];
+  value?: string[];
 };
 
 type SelectFancyProps = SingleSelectProps | MultipleSelectProps;
 
 export function SelectFancy({
-  options,
+  options = [],
   onChange,
-  defaultValue,
+  value,
   disabled = false,
   placeholder = "Select an option",
   searchPlaceholder = "Search...",
@@ -63,42 +88,117 @@ export function SelectFancy({
   className,
   renderOption,
   renderSelected,
+  isAsync,
+  onSearch,
+  debounceMs = 300,
   ...props
 }: SelectFancyProps) {
   const [open, setOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [asyncOptions, setAsyncOptions] = useState<SelectOption[]>([]);
+  const [forceUpdateKey, setForceUpdateKey] = useState(0);
+  const [shouldFocus, setShouldFocus] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const debouncedSearch = useDebounce(searchQuery, debounceMs);
+
+  const displayOptions = useMemo(() => {
+    if (isAsync) {
+      // In async mode:
+      // - If we have async results from a search, show them
+      // - Otherwise show the default options without filtering
+      return asyncOptions.length > 0 ? asyncOptions : options;
+    }
+
+    // Non-async mode remains the same
+    if (!searchQuery) {
+      return options;
+    }
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [isAsync, asyncOptions, options, searchQuery]);
 
   useEffect(() => {
-    if (!defaultValue) {
+    if (!isAsync) {
+      return;
+    }
+
+    const fetchOptions = async () => {
+      setIsLoading(true);
+      try {
+        const results = await onSearch(debouncedSearch);
+        console.log("Fetched results:", results);
+
+        // Check if input is focused
+        const wasFocused = document.activeElement === inputRef.current;
+
+        // Set the options
+        setAsyncOptions(results || []);
+
+        // Force a re-render and remember to focus
+        setForceUpdateKey((prev) => prev + 1);
+        if (wasFocused) {
+          setShouldFocus(true);
+        }
+      } catch (error) {
+        console.error("Error fetching options:", error);
+        setAsyncOptions([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (debouncedSearch) {
+      fetchOptions();
+    } else {
+      setAsyncOptions([]);
+    }
+  }, [debouncedSearch, isAsync, onSearch]);
+
+  useEffect(() => {
+    if (shouldFocus && inputRef.current && isAsync) {
+      // Focus the input after a small delay to ensure component is rendered
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+        setShouldFocus(false);
+      }, 50);
+    }
+  }, [isAsync, shouldFocus, forceUpdateKey]);
+
+  useEffect(() => {
+    if (!value) {
       if (selectedOptions.length > 0) {
         setSelectedOptions([]);
       }
       return;
     }
 
-    if (multiple && Array.isArray(defaultValue)) {
+    if (multiple && Array.isArray(value)) {
       const currentValues = selectedOptions.map((o) => o.value);
       const hasChanges =
-        defaultValue.length !== currentValues.length ||
-        !defaultValue.every((v) => currentValues.includes(v));
+        value.length !== currentValues.length ||
+        !value.every((v) => currentValues.includes(v));
 
       if (hasChanges) {
         const initialOptions = options.filter((option) =>
-          defaultValue.includes(option.value)
+          value.includes(option.value)
         );
         setSelectedOptions(initialOptions);
       }
-    } else if (!multiple && typeof defaultValue === "string") {
+    } else if (!multiple && typeof value === "string") {
       const currentValue = selectedOptions[0]?.value;
-      if (defaultValue !== currentValue) {
-        const initialOption = options.find(
-          (option) => option.value === defaultValue
-        );
+      if (value !== currentValue) {
+        const initialOption = options.find((option) => option.value === value);
         setSelectedOptions(initialOption ? [initialOption] : []);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValue, options, multiple]);
+  }, [value, options, multiple]);
 
   const handleSelect = useCallback(
     (option: SelectOption) => {
@@ -198,31 +298,64 @@ export function SelectFancy({
         side="bottom"
         className="min-w-[--radix-popper-anchor-width] p-0"
       >
-        <Command className="w-full max-h-[200px] sm:max-h-[270px]">
+        <Command
+          key={isAsync ? forceUpdateKey : "static"}
+          className="w-full max-h-[200px] sm:max-h-[270px]"
+        >
           <CommandList>
             <div className="sticky top-0 z-10 bg-popover">
-              <CommandInput placeholder={searchPlaceholder} />
+              <CommandInput
+                ref={inputRef}
+                placeholder={searchPlaceholder}
+                value={searchQuery}
+                onValueChange={setSearchQuery}
+              />
             </div>
-            <CommandEmpty>{emptyMessage}</CommandEmpty>
-            <CommandGroup>
-              {options.map((option, index) => (
-                <CommandItem
-                  key={option.value || index}
-                  onSelect={() => handleSelect(option)}
-                  disabled={option.disabled}
-                >
-                  {renderOption
-                    ? renderOption(
-                        option,
-                        selectedOptions.some((o) => o.value === option.value)
-                      )
-                    : defaultRenderOption(
-                        option,
-                        selectedOptions.some((o) => o.value === option.value)
-                      )}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+
+            {/* Debug info */}
+            <div className="p-2 text-xs text-muted-foreground">
+              <div>Search: {debouncedSearch || "(empty)"}</div>
+              <div>Loading: {isLoading ? "true" : "false"}</div>
+              <div>Async mode: {isAsync ? "true" : "false"}</div>
+              <div>Options count: {displayOptions.length}</div>
+            </div>
+
+            {isLoading ? (
+              <div className="py-6 text-center text-sm text-muted-foreground">
+                <LoaderCircle className="mx-auto size-4 animate-spin opacity-60 mb-1" />
+                <p>Searching...</p>
+              </div>
+            ) : (
+              <>
+                {displayOptions && displayOptions.length > 0 ? (
+                  <CommandGroup>
+                    {displayOptions.map((option, index) => (
+                      <CommandItem
+                        key={option.value || index}
+                        onSelect={() => handleSelect(option)}
+                        disabled={option.disabled}
+                      >
+                        {renderOption
+                          ? renderOption(
+                              option,
+                              selectedOptions.some(
+                                (o) => o.value === option.value
+                              )
+                            )
+                          : defaultRenderOption(
+                              option,
+                              selectedOptions.some(
+                                (o) => o.value === option.value
+                              )
+                            )}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                ) : (
+                  <CommandEmpty>{emptyMessage}</CommandEmpty>
+                )}
+              </>
+            )}
           </CommandList>
         </Command>
       </PopoverContent>
