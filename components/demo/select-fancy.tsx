@@ -10,15 +10,15 @@ import { useState } from "react";
 
 export default function CountryDropdownDemo() {
   const options = [
-    { label: "Option 1", value: "option1", icon: <User /> },
-    { label: "Option 2", value: "option2", icon: <User /> },
-    { label: "Option 3", value: "option3", icon: <User /> },
-  ];
-
-  const options2 = [
     { label: "Option 1", value: "option1" },
     { label: "Option 2", value: "option2" },
     { label: "Option 3", value: "option3" },
+  ];
+
+  const optionsWithIcons = [
+    { label: "Option 1", value: "option1", icon: <User /> },
+    { label: "Option 2", value: "option2", icon: <User /> },
+    { label: "Option 3", value: "option3", icon: <User /> },
   ];
 
   const [selectedSingle, setSelectedSingle] = useState<SelectOption | null>(
@@ -36,7 +36,7 @@ export default function CountryDropdownDemo() {
           onChange={(option) => {
             setSelectedSingle(option);
           }}
-          options={options}
+          options={optionsWithIcons}
         />
       </div>
       <div className="space-y-2">
@@ -47,7 +47,7 @@ export default function CountryDropdownDemo() {
           onChange={(options) => {
             setSelectedMultiple(options);
           }}
-          options={options}
+          options={optionsWithIcons}
         />
       </div>
       <div className="space-y-2">
@@ -67,7 +67,7 @@ export default function CountryDropdownDemo() {
             setSelectedAsync(option);
           }}
           placeholder="Search users..."
-          options={options2}
+          options={options}
         />
       </div>
     </div>

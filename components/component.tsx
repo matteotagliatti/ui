@@ -1,16 +1,16 @@
-import { readComponentSource } from "@/lib/server";
-import { CodeBlock } from "./code-block";
-import { ComponentCard } from "./component-card";
-import { ComponentDetails } from "./component-details";
-import { ComponentLoader } from "./component-loader";
-import { ComponentPath, MyRegistryItem } from "@/lib/types";
-import { ComponentCLI } from "./component-cli";
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "@/components/ui/accordion";
+import { readComponentSource } from "@/lib/server";
+import { ComponentPath, MyRegistryItem } from "@/lib/types";
+import { CodeBlock } from "./code-block";
+import { ComponentCard } from "./component-card";
+import { ComponentCLI } from "./component-cli";
+import { ComponentDetails } from "./component-details";
+import { ComponentLoader } from "./component-loader";
 
 interface Props {
   component: MyRegistryItem;
@@ -41,7 +41,7 @@ export async function Component({ component }: Props) {
             </AccordionContent>
           </AccordionItem>
 
-          {component.usage && (
+          {demoSource && (
             <AccordionItem value="usage">
               <AccordionTrigger>Usage</AccordionTrigger>
               <AccordionContent className="pb-0">

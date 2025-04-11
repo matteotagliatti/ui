@@ -75,6 +75,10 @@
         {
           "path": "registry/default/components/select-fancy.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-debounce.ts",
+          "type": "registry:hook"
         }
       ]
     }

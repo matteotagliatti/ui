@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -48,6 +49,9 @@ export function ComponentDetails({ component, children }: Props) {
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle className="text-left">{component.title}</DialogTitle>
+          <DialogDescription className="hidden">
+            {component.description}
+          </DialogDescription>
         </DialogHeader>
         <div className="min-w-0 space-y-2">{children}</div>
       </DialogContent>

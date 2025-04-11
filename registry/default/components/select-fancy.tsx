@@ -107,14 +107,11 @@ export function SelectFancy({
   const displayOptions = useMemo(() => {
     if (isAsync) {
       if (debouncedSearch) {
-        console.log("asyncOptions", asyncOptions);
         return asyncOptions;
       }
 
       return options;
     }
-
-    console.log("searchQuery", searchQuery);
 
     if (!searchQuery) {
       return options;
