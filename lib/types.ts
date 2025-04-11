@@ -12,3 +12,9 @@ export interface ComponentCategory {
 export type MyRegistryItem = RegistryItem & {
   category: Category;
 };
+
+export type PackageManager = "npm" | "yarn" | "pnpm" | "bun";
+
+export type Config = {
+  packageManager: PackageManager;
+};

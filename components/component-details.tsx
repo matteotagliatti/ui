@@ -12,14 +12,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { MyRegistryItem } from "@/lib/types";
 import { Code } from "lucide-react";
 
 interface Props {
-  name: string;
+  component: MyRegistryItem;
   children: React.ReactNode;
 }
 
-export function ComponentDetails({ name, children }: Props) {
+export function ComponentDetails({ component, children }: Props) {
   return (
     <Dialog>
       <TooltipProvider>
@@ -46,12 +47,10 @@ export function ComponentDetails({ name, children }: Props) {
       </TooltipProvider>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-left">{name}</DialogTitle>
+          <DialogTitle className="text-left">{component.title}</DialogTitle>
         </DialogHeader>
-        <div className="min-w-0">{children}</div>
+        <div className="min-w-0 space-y-4">{children}</div>
       </DialogContent>
     </Dialog>
   );
 }
-
-export default ComponentDetails;

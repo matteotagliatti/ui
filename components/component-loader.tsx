@@ -5,7 +5,7 @@ interface Props {
   component: RegistryItem;
 }
 
-export default async function ComponentLoader<TProps extends object>({
+export async function ComponentLoader<TProps extends object>({
   component,
   ...props
 }: Props & TProps) {
