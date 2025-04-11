@@ -106,10 +106,10 @@ export function SelectFancy({
 
   const displayOptions = useMemo(() => {
     if (isAsync) {
-      // In async mode:
-      // - If we have async results from a search, show them
-      // - Otherwise show the default options without filtering
-      return asyncOptions.length > 0 ? asyncOptions : options;
+      if (debouncedSearch) {
+        return asyncOptions;
+      }
+      return options;
     }
 
     // Non-async mode remains the same
@@ -119,7 +119,7 @@ export function SelectFancy({
     return options.filter((option) =>
       option.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  }, [isAsync, asyncOptions, options, searchQuery]);
+  }, [isAsync, asyncOptions, options, searchQuery, debouncedSearch]);
 
   useEffect(() => {
     if (!isAsync) {
@@ -130,7 +130,6 @@ export function SelectFancy({
       setIsLoading(true);
       try {
         const results = await onSearch(debouncedSearch);
-        console.log("Fetched results:", results);
 
         // Check if input is focused
         const wasFocused = document.activeElement === inputRef.current;
@@ -299,7 +298,7 @@ export function SelectFancy({
         className="min-w-[--radix-popper-anchor-width] p-0"
       >
         <Command
-          key={isAsync ? forceUpdateKey : "static"}
+          key={forceUpdateKey}
           className="w-full max-h-[200px] sm:max-h-[270px]"
         >
           <CommandList>
@@ -312,14 +311,6 @@ export function SelectFancy({
               />
             </div>
 
-            {/* Debug info */}
-            <div className="p-2 text-xs text-muted-foreground">
-              <div>Search: {debouncedSearch || "(empty)"}</div>
-              <div>Loading: {isLoading ? "true" : "false"}</div>
-              <div>Async mode: {isAsync ? "true" : "false"}</div>
-              <div>Options count: {displayOptions.length}</div>
-            </div>
-
             {isLoading ? (
               <div className="py-6 text-center text-sm text-muted-foreground">
                 <LoaderCircle className="mx-auto size-4 animate-spin opacity-60 mb-1" />
@@ -327,7 +318,7 @@ export function SelectFancy({
               </div>
             ) : (
               <>
-                {displayOptions && displayOptions.length > 0 ? (
+                {displayOptions.length > 0 ? (
                   <CommandGroup>
                     {displayOptions.map((option, index) => (
                       <CommandItem
