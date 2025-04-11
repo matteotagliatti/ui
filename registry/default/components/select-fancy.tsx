@@ -73,7 +73,7 @@ type MultipleSelectProps = BaseSelectFancyProps & {
   value?: string[];
 };
 
-type SelectFancyProps = SingleSelectProps | MultipleSelectProps;
+type Props = SingleSelectProps | MultipleSelectProps;
 
 export function SelectFancy({
   options = [],
@@ -92,7 +92,7 @@ export function SelectFancy({
   onSearch,
   debounceMs = 300,
   ...props
-}: SelectFancyProps) {
+}: Props) {
   const [open, setOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
