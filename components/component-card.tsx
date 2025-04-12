@@ -16,6 +16,11 @@ export function ComponentCard({ children, component, className }: Props) {
     ) {
       return "flex items-center justify-center";
     }
+
+    if (component.name === "bento") {
+      return "lg:col-span-2";
+    }
+
     return "";
   }
   return (

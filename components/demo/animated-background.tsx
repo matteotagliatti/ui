@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 export default function AnimatedTabs() {
   return (
     <div className="space-y-4">
+      {/* Icon */}
       <div className="bg-muted/50 border-border/50 flex w-fit gap-x-2 rounded-xl border p-2">
         <AnimatedBackground
           defaultValue={TABS[0].label}
@@ -27,6 +28,7 @@ export default function AnimatedTabs() {
           ))}
         </AnimatedBackground>
       </div>
+      {/* Label */}
       <div className="flex flex-row">
         <AnimatedBackground
           defaultValue={TABS[0].label}
@@ -44,6 +46,7 @@ export default function AnimatedTabs() {
           ))}
         </AnimatedBackground>
       </div>
+      {/* enableHover */}
       <div className="grid grid-cols-2 p-2 md:grid-cols-3">
         <AnimatedBackground
           defaultValue={TABS[0].label}

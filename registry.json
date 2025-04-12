@@ -161,6 +161,38 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "disclosure",
+      "type": "registry:component",
+      "title": "Disclosure",
+      "description": "A disclosure component",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/disclosure.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bento",
+      "type": "registry:component",
+      "title": "Bento",
+      "description": "A component to create a bento grid",
+      "categories": ["other"],
+      "usage": true,
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/bento.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
