@@ -30,6 +30,19 @@
       ]
     },
     {
+      "name": "use-measure",
+      "type": "registry:hook",
+      "title": "Use Measure",
+      "description": "A hook to measure a component",
+      "categories": ["hooks"],
+      "files": [
+        {
+          "path": "registry/default/hooks/use-measure.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",
@@ -75,6 +88,25 @@
         },
         {
           "path": "registry/default/hooks/use-click-outside.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "navbar-expandable",
+      "type": "registry:component",
+      "title": "Navbar Expandable",
+      "description": "A expandable navbar component",
+      "categories": ["motion"],
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["input", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/navbar-expandable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-measure.ts",
           "type": "registry:hook"
         }
       ]

@@ -34,7 +34,7 @@ export function NavbarDynamic({
       }}
     >
       <div className={className} ref={containerRef}>
-        <div className="h-full w-full rounded-xl border border-zinc-950/10 bg-muted">
+        <div className="h-full w-full rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
           <motion.div
             animate={{
               width: open ? openWidth : initialWidth,

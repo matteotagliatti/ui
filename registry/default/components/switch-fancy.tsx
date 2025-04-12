@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import React, {
   useCallback,
   useEffect,
@@ -7,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { cn } from "@/lib/utils";
 
 export type OptionValue = string | number | boolean;
 

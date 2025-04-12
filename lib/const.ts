@@ -4,6 +4,7 @@ import { Category, ComponentCategory, MyRegistryItem } from "./types";
 export const site = {
   title: "UI Components",
   url: "https://mtui.vercel.app",
+  author: "Matteo Tagliatti",
 } as const;
 
 export const categories: ComponentCategory[] = [
