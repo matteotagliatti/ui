@@ -29,27 +29,27 @@ export function ComponentCLI({ name }: { name: string }) {
         }}
         className="rounded-md bg-zinc-950 dark:bg-zinc-900"
       >
-        <TabsList className="dark h-auto justify-start border-b bg-transparent py-0 px-3">
+        <TabsList className="dark h-auto justify-start border-b bg-transparent px-3 py-0">
           <TabsTrigger
-            className="data-[state=active]:after:bg-primary relative px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent dark:data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none"
+            className="data-[state=active]:after:bg-primary relative border-none px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
             value="npm"
           >
             npm
           </TabsTrigger>
           <TabsTrigger
-            className="data-[state=active]:after:bg-primary relative px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent dark:data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none"
+            className="data-[state=active]:after:bg-primary relative border-none px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
             value="pnpm"
           >
             pnpm
           </TabsTrigger>
           <TabsTrigger
-            className="data-[state=active]:after:bg-primary relative px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent dark:data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none"
+            className="data-[state=active]:after:bg-primary relative border-none px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
             value="yarn"
           >
             yarn
           </TabsTrigger>
           <TabsTrigger
-            className="data-[state=active]:after:bg-primary relative px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent dark:data-[state=active]:bg-transparent data-[state=active]:shadow-none border-none"
+            className="data-[state=active]:after:bg-primary relative border-none px-3 py-3 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
             value="bun"
           >
             bun
@@ -65,7 +65,7 @@ export function ComponentCLI({ name }: { name: string }) {
       </Tabs>
       <CopyButton
         componentSource={commands[packageManager as keyof typeof commands]}
-        className="top-1 right-1  "
+        className="top-1 right-1"
       />
     </div>
   );

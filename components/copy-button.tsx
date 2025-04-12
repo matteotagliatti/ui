@@ -34,7 +34,7 @@ export const CopyButton = ({ componentSource, className }: Props) => {
               <div
                 className={cn(
                   "transition-all",
-                  copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                  copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
                 )}
               >
                 <svg
@@ -53,7 +53,7 @@ export const CopyButton = ({ componentSource, className }: Props) => {
               <div
                 className={cn(
                   "absolute transition-all",
-                  copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
+                  copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
                 )}
               >
                 <svg

@@ -7,12 +7,12 @@ import { convertRegistryPaths } from "./utils";
 
 export async function readComponentSource(
   componentName: string,
-  componentPath: ComponentPath
+  componentPath: ComponentPath,
 ) {
   const filePath = path.join(
     process.cwd(),
     componentPath,
-    `${componentName}.tsx`
+    `${componentName}.tsx`,
   );
   try {
     const content = await fs.readFile(filePath, "utf8");

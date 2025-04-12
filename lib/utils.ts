@@ -15,7 +15,7 @@ export function getComponentsByCategory(category: Category): MyRegistryItem[] {
   return components.filter(
     (component) =>
       component.categories.includes(category) &&
-      component.type === "registry:component"
+      component.type === "registry:component",
   );
 }
 

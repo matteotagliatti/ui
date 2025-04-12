@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 
 const buttonGroupVariants = cva(
-  "flex sm:items-center max-sm:gap-1 max-sm:flex-col [&>*:focus-within]:ring-1 [&>*:focus-within]:z-10 [&>*]:ring-offset-0 sm:[&>*:not(:first-child)]:rounded-l-none sm:[&>*:not(:last-child)]:rounded-r-none",
+  "flex max-sm:flex-col max-sm:gap-1 sm:items-center [&>*]:ring-offset-0 [&>*:focus-within]:z-10 [&>*:focus-within]:ring-1 sm:[&>*:not(:first-child)]:rounded-l-none sm:[&>*:not(:last-child)]:rounded-r-none",
   {
     variants: {
       size: {
@@ -15,7 +15,7 @@ const buttonGroupVariants = cva(
         icon: "[&>*]:h-10 [&>*]:w-10",
       },
       separated: {
-        true: "[&>*]:outline [&>*]:outline-1 [&>*]:outline-zinc-500 gap-0.5 [&>*:focus-within]:ring-offset-2",
+        true: "gap-0.5 [&>*]:outline [&>*]:outline-1 [&>*]:outline-zinc-500 [&>*:focus-within]:ring-offset-2",
         false: "[&>*:focus-within]:ring-offset-1",
       },
     },
@@ -23,7 +23,7 @@ const buttonGroupVariants = cva(
       separated: false,
       size: "default",
     },
-  }
+  },
 );
 
 export interface ButtonGroupProps

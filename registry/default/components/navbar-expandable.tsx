@@ -41,7 +41,7 @@ export function ToolbarExpandable({ className }: Props) {
       }}
     >
       <div className={className} ref={ref}>
-        <div className="h-full w-full rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
+        <div className="bg-muted/50 border-border/50 h-full w-full rounded-xl border backdrop-blur-sm">
           <div className="overflow-hidden">
             <AnimatePresence initial={false} mode="sync">
               {isOpen ? (
@@ -68,7 +68,7 @@ export function ToolbarExpandable({ className }: Props) {
                           <div
                             className={cn(
                               "px-2 pt-2 text-sm",
-                              isSelected ? "block" : "hidden"
+                              isSelected ? "block" : "hidden",
                             )}
                           >
                             {item.content}
@@ -89,7 +89,7 @@ export function ToolbarExpandable({ className }: Props) {
                 size="icon"
                 aria-label={item.label}
                 className={cn(
-                  "active:scale-[0.98]"
+                  "active:scale-[0.98]",
                   /* active === item.id &&
                     "bg-accent text-accent-foreground dark:hover:bg-accent/50" */
                 )}
@@ -121,7 +121,7 @@ const ITEMS = [
     title: <User className="h-5 w-5" />,
     content: (
       <div className="flex flex-col space-y-4">
-        <div className="flex flex-col space-y-1 text-primary">
+        <div className="text-primary flex flex-col space-y-1">
           <span>{site.author}</span>
         </div>
         <Button size="sm">Edit Profile</Button>
@@ -145,7 +145,7 @@ const ITEMS = [
     title: <Folder className="h-5 w-5" />,
     content: (
       <div className="flex flex-col space-y-4">
-        <div className="flex flex-col text-primary">
+        <div className="text-primary flex flex-col">
           <div className="space-y-1">
             <div>document.pdf</div>
             <div>document.docx</div>
@@ -161,7 +161,7 @@ const ITEMS = [
     title: <WalletCards className="h-5 w-5" />,
     content: (
       <div className="flex flex-col space-y-4">
-        <div className="flex flex-col text-primary">
+        <div className="text-primary flex flex-col">
           <span>Current Balance</span>
           <span>€ 10.00</span>
         </div>

@@ -19,7 +19,7 @@ interface Props {
 export async function Component({ component }: Props) {
   const source = await readComponentSource(
     component.name,
-    ComponentPath.registry
+    ComponentPath.registry,
   );
 
   let demoSource: string | null = null;

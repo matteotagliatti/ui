@@ -66,7 +66,7 @@ export function SwitchFancy<T extends OptionType>({
       }
       return option[valueKey] as OptionValue;
     },
-    [valueKey]
+    [valueKey],
   );
 
   const getOptionLabel = useCallback(
@@ -76,7 +76,7 @@ export function SwitchFancy<T extends OptionType>({
       }
       return String(option[labelKey]);
     },
-    [labelKey]
+    [labelKey],
   );
 
   const isOptionDisabled = useCallback(
@@ -84,7 +84,7 @@ export function SwitchFancy<T extends OptionType>({
       const optionValue = getOptionValue(option);
       if (
         disabledOptions.includes(
-          optionValue as T extends OptionObject ? T[keyof T] : T
+          optionValue as T extends OptionObject ? T[keyof T] : T,
         )
       ) {
         return true;
@@ -94,7 +94,7 @@ export function SwitchFancy<T extends OptionType>({
       }
       return false;
     },
-    [disabledOptions, getOptionValue, disabledKey]
+    [disabledOptions, getOptionValue, disabledKey],
   );
 
   const memoizedOptions = useMemo(
@@ -109,7 +109,7 @@ export function SwitchFancy<T extends OptionType>({
           ? T & { label: string; value: OptionValue; disabled: boolean }
           : { label: string; value: T; disabled: boolean }
       >,
-    [options, getOptionValue, getOptionLabel, isOptionDisabled]
+    [options, getOptionValue, getOptionLabel, isOptionDisabled],
   );
 
   const [activeIndex, setActiveIndex] = useState(() => {
@@ -118,7 +118,7 @@ export function SwitchFancy<T extends OptionType>({
     const index = memoizedOptions.findIndex((option) => option.value === value);
     if (index === -1) {
       console.warn(
-        `SwitchFancy: No option found for value "${value}". Defaulting to first option.`
+        `SwitchFancy: No option found for value "${value}". Defaulting to first option.`,
       );
       return 0;
     }
@@ -191,11 +191,11 @@ export function SwitchFancy<T extends OptionType>({
         onChange?.(
           memoizedOptions[index].value as T extends OptionObject
             ? T[keyof T]
-            : T
+            : T,
         );
       }
     },
-    [memoizedOptions, onChange]
+    [memoizedOptions, onChange],
   );
 
   const renderOptionContent = useCallback(
@@ -233,9 +233,9 @@ export function SwitchFancy<T extends OptionType>({
           onClick={() => handleChange(index)}
           className={cn(
             "relative flex h-9 cursor-pointer items-center justify-center",
-            "rounded-full px-3.5 text-sm font-medium transition-colors data-[checked]:text-primary-foreground",
+            "data-[checked]:text-primary-foreground rounded-full px-3.5 text-sm font-medium transition-colors",
             "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
-            radioClassName
+            radioClassName,
           )}
           {...(isSelected ? { "data-checked": true } : {})}
           {...(option.disabled
@@ -247,7 +247,7 @@ export function SwitchFancy<T extends OptionType>({
         </div>
       );
     },
-    [activeIndex, renderOption, radioClassName, handleChange]
+    [activeIndex, renderOption, radioClassName, handleChange],
   );
 
   useEffect(() => {
@@ -264,7 +264,7 @@ export function SwitchFancy<T extends OptionType>({
 
   useEffect(() => {
     const newIndex = memoizedOptions.findIndex(
-      (option) => option.value === value
+      (option) => option.value === value,
     );
     if (newIndex !== -1 && newIndex !== activeIndex) {
       setActiveIndex(newIndex);
@@ -276,7 +276,7 @@ export function SwitchFancy<T extends OptionType>({
       role="radiogroup"
       aria-label="Switch options"
       ref={containerRef}
-      className={cn("rounded-xl bg-muted p-2", className)}
+      className={cn("bg-muted rounded-xl p-2", className)}
       onKeyDown={(e) => {
         props.onKeyDown?.(e);
 
@@ -306,7 +306,7 @@ export function SwitchFancy<T extends OptionType>({
         className={cn(
           "absolute transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
           "bg-primary rounded-full",
-          highlighterClassName
+          highlighterClassName,
         )}
         style={{
           ...highlighterStyle,
@@ -324,7 +324,7 @@ export function SwitchFancy<T extends OptionType>({
 
       <div
         aria-live="polite"
-        className="absolute w-px h-px p-0 -m-px overflow-hidden clip-rect-0 whitespace-nowrap border-0"
+        className="clip-rect-0 absolute -m-px h-px w-px overflow-hidden border-0 p-0 whitespace-nowrap"
       >
         {memoizedOptions[activeIndex]?.label} selected
       </div>

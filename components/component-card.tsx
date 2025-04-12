@@ -23,7 +23,7 @@ export function ComponentCard({ children, component, className }: Props) {
       className={cn(
         "group/item relative",
         getComponentCardClassName(),
-        className
+        className,
       )}
     >
       {children}

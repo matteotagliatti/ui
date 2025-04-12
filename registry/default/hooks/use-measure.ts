@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 function createDebounce<T extends (...args: unknown[]) => void>(
   callback: T,
-  ms: number
+  ms: number,
 ) {
   let timeoutId: number;
 
@@ -14,7 +14,7 @@ function createDebounce<T extends (...args: unknown[]) => void>(
 
 declare type ResizeObserverCallback = (
   entries: ResizeObserverEntry[],
-  observer: ResizeObserver
+  observer: ResizeObserver,
 ) => void;
 declare class ResizeObserver {
   constructor(callback: ResizeObserverCallback);
@@ -41,7 +41,7 @@ type HTMLOrSVGElement = HTMLElement | SVGElement;
 type Result = [
   (element: HTMLOrSVGElement | null) => void,
   RectReadOnly,
-  () => void
+  () => void,
 ];
 
 type State = {
@@ -64,7 +64,7 @@ function useMeasure(
     debounce: 0,
     scroll: false,
     offsetSize: false,
-  }
+  },
 ): Result {
   const ResizeObserver: {
     new (callback: ResizeObserverCallback): ResizeObserver;
@@ -81,7 +81,7 @@ function useMeasure(
 
   if (!ResizeObserver) {
     throw new Error(
-      "This browser does not support ResizeObserver out of the box. See: https://github.com/react-spring/react-use-measure/#resize-observer-polyfills"
+      "This browser does not support ResizeObserver out of the box. See: https://github.com/react-spring/react-use-measure/#resize-observer-polyfills",
     );
   }
 
@@ -162,7 +162,7 @@ function useMeasure(
   function removeListeners() {
     if (state.current.scrollContainers) {
       state.current.scrollContainers.forEach((element) =>
-        element.removeEventListener("scroll", scrollChange, true)
+        element.removeEventListener("scroll", scrollChange, true),
       );
       state.current.scrollContainers = null;
     }
@@ -179,12 +179,12 @@ function useMeasure(
       ) {
         screen.orientation.removeEventListener(
           "change",
-          state.current.orientationHandler
+          state.current.orientationHandler,
         );
       } else if ("onorientationchange" in window) {
         window.removeEventListener(
           "orientationchange",
-          state.current.orientationHandler
+          state.current.orientationHandler,
         );
       }
     }
@@ -200,7 +200,7 @@ function useMeasure(
         scrollContainer.addEventListener("scroll", scrollChange, {
           capture: true,
           passive: true,
-        })
+        }),
       );
     }
 
@@ -213,13 +213,13 @@ function useMeasure(
     if ("orientation" in screen && "addEventListener" in screen.orientation) {
       screen.orientation.addEventListener(
         "change",
-        state.current.orientationHandler
+        state.current.orientationHandler,
       );
     } else if ("onorientationchange" in window) {
       // Fallback to orientationchange event
       window.addEventListener(
         "orientationchange",
-        state.current.orientationHandler
+        state.current.orientationHandler,
       );
     }
   }
@@ -271,14 +271,14 @@ function useOnWindowScroll(onScroll: () => void, enabled: boolean) {
 
 // Returns a list of scroll offsets
 function findScrollContainers(
-  element: HTMLOrSVGElement | null
+  element: HTMLOrSVGElement | null,
 ): HTMLOrSVGElement[] {
   const result: HTMLOrSVGElement[] = [];
   if (!element || element === document.body) return result;
   const { overflow, overflowX, overflowY } = window.getComputedStyle(element);
   if (
     [overflow, overflowX, overflowY].some(
-      (prop) => prop === "auto" || prop === "scroll"
+      (prop) => prop === "auto" || prop === "scroll",
     )
   )
     result.push(element);

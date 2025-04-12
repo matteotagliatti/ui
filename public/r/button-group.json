@@ -4,13 +4,8 @@
   "type": "registry:component",
   "title": "Button Group",
   "description": "A button group component",
-  "dependencies": [
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "button",
-    "utils"
-  ],
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["button", "utils"],
   "files": [
     {
       "path": "registry/default/components/button-group.tsx",

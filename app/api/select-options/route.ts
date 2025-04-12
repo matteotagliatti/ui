@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
 
   // Filter options based on the search query
   const filteredOptions = mockOptions.filter((option) =>
-    option.label.toLowerCase().includes(query)
+    option.label.toLowerCase().includes(query),
   );
 
   return NextResponse.json(filteredOptions);

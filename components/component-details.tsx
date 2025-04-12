@@ -25,7 +25,7 @@ export function ComponentDetails({ component, children }: Props) {
   return (
     <Dialog>
       <TooltipProvider>
-        <div className="absolute right-2 top-2 flex gap-2">
+        <div className="absolute top-2 right-2 flex gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
               <span>
@@ -33,7 +33,7 @@ export function ComponentDetails({ component, children }: Props) {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-muted-foreground/80 hover:bg-transparent hover:text-foreground disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100"
+                    className="text-muted-foreground/80 hover:text-foreground hover:bg-transparent disabled:opacity-100 lg:opacity-0 lg:group-focus-within/item:opacity-100 lg:group-hover/item:opacity-100"
                   >
                     <Code size={16} strokeWidth={2} aria-hidden={true} />
                   </Button>

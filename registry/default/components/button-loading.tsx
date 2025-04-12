@@ -25,14 +25,14 @@ export function ButtonLoading({
       disabled={isLoading}
       className={cn(
         className,
-        "inline-grid place-items-center [grid-template-areas:'stack']"
+        "inline-grid place-items-center [grid-template-areas:'stack']",
       )}
       {...props}
     >
       <span
         className={cn(
           isLoading && "invisible",
-          "flex items-center gap-2 [grid-area:stack]"
+          "flex items-center gap-2 [grid-area:stack]",
         )}
       >
         {props.children}
@@ -41,7 +41,7 @@ export function ButtonLoading({
         aria-label="loading"
         className={cn(
           isLoading ? "visible" : "invisible",
-          "size-4 animate-spin transition-opacity [grid-area:stack]"
+          "size-4 animate-spin transition-opacity [grid-area:stack]",
         )}
       />
     </Button>

@@ -22,13 +22,13 @@ export default function CountryDropdownDemo() {
   ];
 
   const [selectedSingle, setSelectedSingle] = useState<SelectOption | null>(
-    null
+    null,
   );
   const [selectedMultiple, setSelectedMultiple] = useState<SelectOption[]>([]);
   const [selectedAsync, setSelectedAsync] = useState<SelectOption | null>(null);
 
   return (
-    <div className="space-y-8 w-72">
+    <div className="w-72 space-y-8">
       <div className="space-y-2">
         <Label>Fancy Select (single)</Label>
         <SelectFancy
@@ -57,7 +57,7 @@ export default function CountryDropdownDemo() {
           value={selectedAsync?.value}
           onSearch={async (query: string) => {
             const response = await fetch(
-              `/api/select-options?q=${encodeURIComponent(query)}`
+              `/api/select-options?q=${encodeURIComponent(query)}`,
             );
             const data = await response.json();
             return data;

@@ -8,7 +8,7 @@ const options = [
 
 export default function SwitchFancyDemo() {
   return (
-    <div className="space-y-4 w-fit">
+    <div className="w-fit space-y-4">
       <SwitchFancy options={options} highlighterClassName="rounded-xl" />
       <SwitchFancy
         options={options}

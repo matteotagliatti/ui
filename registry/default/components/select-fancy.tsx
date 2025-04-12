@@ -117,7 +117,7 @@ export function SelectFancy({
       return options;
     }
     return options.filter((option) =>
-      option.label.toLowerCase().includes(searchQuery.toLowerCase())
+      option.label.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -189,7 +189,7 @@ export function SelectFancy({
 
       if (hasChanges) {
         const initialOptions = options.filter((option) =>
-          value.includes(option.value)
+          value.includes(option.value),
         );
         setSelectedOptions(initialOptions);
       }
@@ -207,7 +207,7 @@ export function SelectFancy({
     (option: SelectOption) => {
       if (multiple) {
         const newSelection = selectedOptions.some(
-          (o) => o.value === option.value
+          (o) => o.value === option.value,
         )
           ? selectedOptions.filter((o) => o.value !== option.value)
           : [...selectedOptions, option];
@@ -220,13 +220,13 @@ export function SelectFancy({
         setOpen(false);
       }
     },
-    [onChange, multiple, selectedOptions]
+    [onChange, multiple, selectedOptions],
   );
 
   const defaultRenderOption = (option: SelectOption, isSelected: boolean) => (
     <div className="flex flex-grow items-center gap-2 overflow-hidden">
       {option.icon && (
-        <div className="shrink-0 w-5 h-5 inline-flex items-center justify-center">
+        <div className="inline-flex h-5 w-5 shrink-0 items-center justify-center">
           {option.icon}
         </div>
       )}
@@ -236,7 +236,7 @@ export function SelectFancy({
       <CheckIcon
         className={cn(
           "ml-auto h-4 w-4 shrink-0",
-          isSelected ? "opacity-100" : "opacity-0"
+          isSelected ? "opacity-100" : "opacity-0",
         )}
       />
     </div>
@@ -254,7 +254,7 @@ export function SelectFancy({
     return (
       <div className="flex items-center gap-2 overflow-hidden">
         {selected.icon && (
-          <div className="shrink-0 w-4 h-4 inline-flex items-center justify-center">
+          <div className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
             {selected.icon}
           </div>
         )}
@@ -271,19 +271,19 @@ export function SelectFancy({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         className={cn(
-          "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 hover:bg-secondary/80",
-          slim && "gap-1 w-min",
-          className
+          "border-input ring-offset-background placeholder:text-muted-foreground hover:bg-secondary/80 flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+          slim && "w-min gap-1",
+          className,
         )}
         disabled={disabled}
         {...props}
       >
         {selectedOptions.length > 0 ? (
-          <div className="flex items-center flex-grow gap-2 overflow-hidden">
+          <div className="flex flex-grow items-center gap-2 overflow-hidden">
             {renderSelected
               ? renderSelected(multiple ? selectedOptions : selectedOptions[0])
               : defaultRenderSelected(
-                  multiple ? selectedOptions : selectedOptions[0]
+                  multiple ? selectedOptions : selectedOptions[0],
                 )}
           </div>
         ) : (
@@ -303,11 +303,11 @@ export function SelectFancy({
       >
         <Command
           key={forceUpdateKey}
-          className="w-full max-h-[200px] sm:max-h-[270px]"
+          className="max-h-[200px] w-full sm:max-h-[270px]"
           shouldFilter={!isAsync}
         >
           <CommandList>
-            <div className="sticky top-0 z-10 bg-popover">
+            <div className="bg-popover sticky top-0 z-10">
               <CommandInput
                 ref={inputRef}
                 placeholder={searchPlaceholder}
@@ -317,8 +317,8 @@ export function SelectFancy({
             </div>
 
             {isLoading ? (
-              <div className="py-6 text-center text-sm text-muted-foreground">
-                <LoaderCircle className="mx-auto size-4 animate-spin opacity-60 mb-1" />
+              <div className="text-muted-foreground py-6 text-center text-sm">
+                <LoaderCircle className="mx-auto mb-1 size-4 animate-spin opacity-60" />
                 <p>Searching...</p>
               </div>
             ) : (
@@ -335,14 +335,14 @@ export function SelectFancy({
                           ? renderOption(
                               option,
                               selectedOptions.some(
-                                (o) => o.value === option.value
-                              )
+                                (o) => o.value === option.value,
+                              ),
                             )
                           : defaultRenderOption(
                               option,
                               selectedOptions.some(
-                                (o) => o.value === option.value
-                              )
+                                (o) => o.value === option.value,
+                              ),
                             )}
                       </CommandItem>
                     ))}

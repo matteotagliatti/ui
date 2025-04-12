@@ -4,14 +4,8 @@
   "type": "registry:component",
   "title": "Button Loading",
   "description": "A button loading component",
-  "dependencies": [
-    "lucide-react",
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "button",
-    "utils"
-  ],
+  "dependencies": ["lucide-react", "class-variance-authority"],
+  "registryDependencies": ["button", "utils"],
   "files": [
     {
       "path": "registry/default/components/button-loading.tsx",
