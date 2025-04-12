@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import { ReactNode } from "react";
@@ -61,17 +61,13 @@ export function BentoCard({
           "pointer-events-none absolute bottom-0 flex w-full translate-y-10 flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
         )}
       >
-        <Button
-          variant="ghost"
-          asChild
-          size="sm"
-          className="pointer-events-auto"
+        <a
+          className={buttonVariants({ variant: "default", size: "sm" })}
+          href={href}
         >
-          <a href={href}>
-            {cta}
-            <ArrowRightIcon className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
+          {cta}
+          <ArrowRightIcon className="h-4 w-4" />
+        </a>
       </div>
       <div className="group-hover:bg-accent/30 pointer-events-none absolute inset-0 transition-all duration-300" />
     </div>
