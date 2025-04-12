@@ -3,6 +3,7 @@ import { RegistryItem } from "shadcn/registry";
 export enum Category {
   Button = "button",
   Input = "input",
+  Motion = "motion",
 }
 
 export interface ComponentCategory {
@@ -11,7 +12,7 @@ export interface ComponentCategory {
 }
 
 export type MyRegistryItem = RegistryItem & {
-  category: Category;
+  categories: Category[];
   usage?: boolean;
 };
 

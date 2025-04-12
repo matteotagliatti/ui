@@ -1,6 +1,5 @@
+import { Category, MyRegistryItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { MyRegistryItem } from "@/lib/types";
-import { Category } from "@/lib/types";
 
 interface Props {
   children: React.ReactNode;
@@ -10,13 +9,14 @@ interface Props {
 
 export function ComponentCard({ children, component, className }: Props) {
   function getComponentCardClassName() {
-    switch (component.category) {
-      case Category.Button:
-      case Category.Input:
-        return "flex items-center justify-center";
-      default:
-        return "";
+    if (
+      component.categories.includes(Category.Button) ||
+      component.categories.includes(Category.Input) ||
+      component.categories.includes(Category.Motion)
+    ) {
+      return "flex items-center justify-center";
     }
+    return "";
   }
   return (
     <div

@@ -8,10 +8,23 @@
       "type": "registry:hook",
       "title": "Use Debounce",
       "description": "A hook to debounce a value",
-      "category": "hooks",
+      "categories": ["hooks"],
       "files": [
         {
           "path": "registry/default/hooks/use-debounce.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-click-outside",
+      "type": "registry:hook",
+      "title": "Use Click Outside",
+      "description": "A hook to handle click outside",
+      "categories": ["hooks"],
+      "files": [
+        {
+          "path": "registry/default/hooks/use-click-outside.ts",
           "type": "registry:hook"
         }
       ]
@@ -21,7 +34,7 @@
       "type": "registry:component",
       "title": "Button Loading",
       "description": "A button loading component",
-      "category": "button",
+      "categories": ["button"],
       "dependencies": ["lucide-react", "class-variance-authority"],
       "registryDependencies": ["button", "utils"],
       "files": [
@@ -36,7 +49,7 @@
       "type": "registry:component",
       "title": "Button Group",
       "description": "A button group component",
-      "category": "button",
+      "categories": ["button"],
       "usage": true,
       "dependencies": ["class-variance-authority"],
       "registryDependencies": ["button", "utils"],
@@ -48,11 +61,30 @@
       ]
     },
     {
+      "name": "navbar-dynamic",
+      "type": "registry:component",
+      "title": "Navbar Dynamic",
+      "description": "A dynamic navbar component",
+      "categories": ["motion"],
+      "dependencies": ["lucide-react", "motion"],
+      "registryDependencies": ["input", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/navbar-dynamic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-click-outside.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "switch-fancy",
       "type": "registry:component",
       "title": "Switch Fancy",
       "description": "A switch component with a fancy design",
-      "category": "input",
+      "categories": ["input"],
       "usage": true,
       "registryDependencies": ["utils"],
       "files": [
@@ -67,7 +99,7 @@
       "type": "registry:component",
       "title": "Select Fancy",
       "description": "A fancy select component with a search input, single and multiple select",
-      "category": "input",
+      "categories": ["input"],
       "usage": true,
       "dependencies": ["lucide-react"],
       "registryDependencies": ["utils", "command", "popover"],
