@@ -1,5 +1,5 @@
-import { ToolbarExpandable } from "@/registry/default/components/navbar-expandable";
+import { NavbarExpandable } from "@/registry/default/components/navbar-expandable";
 
 export default function NavbarExpandableDemo() {
-  return <ToolbarExpandable />;
+  return <NavbarExpandable />;
 }

@@ -145,6 +145,22 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "animated-background",
+      "type": "registry:component",
+      "title": "Animated Background",
+      "description": "A component to animate a background",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/animated-background.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

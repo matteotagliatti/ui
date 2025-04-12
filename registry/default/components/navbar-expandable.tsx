@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-export function ToolbarExpandable({ className }: Props) {
+export function NavbarExpandable({ className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [contentRef, { height: heightContent }] = useMeasure();
   const [menuRef, { width: widthContainer }] = useMeasure();
