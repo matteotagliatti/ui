@@ -19,7 +19,6 @@ type AnimatedBackgroundProps = {
   onValueChange?: (newActiveId: string | null) => void;
   className?: string;
   transition?: Transition;
-  enableHover?: boolean;
 };
 
 export function AnimatedBackground({
@@ -28,7 +27,6 @@ export function AnimatedBackground({
   onValueChange,
   className,
   transition,
-  enableHover = false,
 }: AnimatedBackgroundProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const uniqueId = useId();
@@ -51,15 +49,6 @@ export function AnimatedBackground({
   return Children.map(children, (child: any, index) => {
     const id = child.props["data-id"];
 
-    const interactionProps = enableHover
-      ? {
-          onMouseEnter: () => handleSetActiveId(id),
-          onMouseLeave: () => handleSetActiveId(null),
-        }
-      : {
-          onClick: () => handleSetActiveId(id),
-        };
-
     return cloneElement(
       child,
       {
@@ -67,7 +56,7 @@ export function AnimatedBackground({
         className: cn("relative inline-flex", child.props.className),
         "aria-selected": activeId === id,
         "data-checked": activeId === id ? "true" : "false",
-        ...interactionProps,
+        onClick: () => handleSetActiveId(id),
       },
       <>
         <AnimatePresence initial={false}>

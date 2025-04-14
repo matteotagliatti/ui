@@ -7,6 +7,7 @@ import {
 } from "@/registry/default/components/select-fancy";
 import { User } from "lucide-react";
 import { useState } from "react";
+import { InputContainer } from "@/components/input-container";
 
 export default function CountryDropdownDemo() {
   const options = [
@@ -29,7 +30,7 @@ export default function CountryDropdownDemo() {
 
   return (
     <div className="w-72 space-y-8">
-      <div className="space-y-2">
+      <InputContainer>
         <Label>Fancy Select (single)</Label>
         <SelectFancy
           value={selectedSingle?.value}
@@ -38,8 +39,8 @@ export default function CountryDropdownDemo() {
           }}
           options={optionsWithIcons}
         />
-      </div>
-      <div className="space-y-2">
+      </InputContainer>
+      <InputContainer>
         <Label>Fancy Select (multiple)</Label>
         <SelectFancy
           multiple={true}
@@ -49,8 +50,8 @@ export default function CountryDropdownDemo() {
           }}
           options={optionsWithIcons}
         />
-      </div>
-      <div className="space-y-2">
+      </InputContainer>
+      <InputContainer>
         <Label>Fancy Select (async)</Label>
         <SelectFancy
           isAsync
@@ -69,7 +70,7 @@ export default function CountryDropdownDemo() {
           placeholder="Search users..."
           options={options}
         />
-      </div>
+      </InputContainer>
     </div>
   );
 }

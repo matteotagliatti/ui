@@ -46,29 +46,6 @@ export default function AnimatedTabs() {
           ))}
         </AnimatedBackground>
       </div>
-      {/* enableHover */}
-      <div className="grid grid-cols-2 p-2 md:grid-cols-3">
-        <AnimatedBackground
-          defaultValue={TABS[0].label}
-          className="bg-muted rounded-lg"
-          transition={{
-            type: "spring",
-            bounce: 0.2,
-            duration: 0.6,
-          }}
-          enableHover
-        >
-          {TABS.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center px-2 py-1"
-              data-id={`card-${index}`}
-            >
-              <p className="text-sm font-medium select-none">{item.label}</p>
-            </div>
-          ))}
-        </AnimatedBackground>
-      </div>
     </div>
   );
 }
