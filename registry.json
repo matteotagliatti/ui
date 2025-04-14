@@ -17,6 +17,21 @@
       ]
     },
     {
+      "name": "input-fancy",
+      "type": "registry:component",
+      "title": "Input Fancy",
+      "description": "A fancy input component",
+      "categories": ["input"],
+      "usage": true,
+      "registryDependencies": ["utils", "label"],
+      "files": [
+        {
+          "path": "registry/default/components/input-fancy.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",
