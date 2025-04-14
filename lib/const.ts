@@ -20,10 +20,6 @@ export const categories: ComponentCategory[] = [
     slug: Category.Motion,
     name: "Motion",
   },
-  {
-    slug: Category.Other,
-    name: "Other",
-  },
 ];
 
 export const components = registry.items.filter(
