@@ -9,13 +9,13 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
-type TransitionPanelProps = {
+interface Props extends MotionProps {
   children: React.ReactNode[];
   className?: string;
   transition?: Transition;
   activeIndex: number;
   variants?: { enter: Variant; center: Variant; exit: Variant };
-} & MotionProps;
+}
 
 export function TransitionPanel({
   children,
@@ -24,7 +24,7 @@ export function TransitionPanel({
   variants,
   activeIndex,
   ...motionProps
-}: TransitionPanelProps) {
+}: Props) {
   return (
     <div className={cn("relative", className)}>
       <AnimatePresence

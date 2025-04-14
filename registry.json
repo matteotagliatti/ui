@@ -129,6 +129,22 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "tilt",
+      "type": "registry:component",
+      "title": "Tilt",
+      "description": "A tilt component",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/tilt.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
