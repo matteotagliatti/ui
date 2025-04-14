@@ -32,6 +32,27 @@
       ]
     },
     {
+      "name": "input-phone",
+      "type": "registry:component",
+      "title": "Input Phone",
+      "description": "A phone input component",
+      "categories": ["input"],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "command",
+        "input",
+        "popover",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/input-phone.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",

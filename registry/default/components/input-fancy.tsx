@@ -1,8 +1,6 @@
 "use client";
 
-import { InputContainer } from "@/components/input-container";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 interface InputFancyProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -20,65 +18,50 @@ interface InputFancyProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function InputFancy({
-  required = false,
   inline = false,
-  label,
   left,
   right,
   placeholder,
   type,
-  helperText,
-  errorText,
   leftClassName,
   rightClassName,
   ...props
 }: InputFancyProps) {
   return (
-    <InputContainer>
-      {label && (
-        <Label htmlFor={props.id}>
-          {label} {required && <span className="text-red-500">*</span>}
-        </Label>
+    <div
+      className={cn(
+        "relative",
+        inline && "flex rounded-md shadow-sm shadow-black/5",
       )}
-      <div
+    >
+      {left && !inline && (
+        <InputIcon className={leftClassName} icon={left} position="left" />
+      )}
+      {left && inline && (
+        <InputInlineElement className={leftClassName} position="left">
+          {left}
+        </InputInlineElement>
+      )}
+      <Input
+        id={props.id}
         className={cn(
-          "relative",
-          inline && "flex rounded-md shadow-sm shadow-black/5",
+          left && !inline && "peer ps-9",
+          left && inline && "-ms-px rounded-s-none border-s-0 shadow-none",
+          right && !inline && "peer pe-9",
+          right && inline && "-ms-px rounded-e-none border-e-0 shadow-none",
         )}
-      >
-        {left && !inline && (
-          <InputIcon className={leftClassName} icon={left} position="left" />
-        )}
-        {left && inline && (
-          <InputInlineElement className={leftClassName} position="left">
-            {left}
-          </InputInlineElement>
-        )}
-        <Input
-          id={props.id}
-          className={cn(
-            left && !inline && "peer ps-9",
-            left && inline && "-ms-px rounded-s-none border-s-0 shadow-none",
-            right && !inline && "peer pe-9",
-            right && inline && "-ms-px rounded-e-none border-e-0 shadow-none",
-          )}
-          placeholder={placeholder}
-          type={type}
-        />
-        {right && !inline && (
-          <InputIcon className={rightClassName} icon={right} position="right" />
-        )}
-        {right && inline && (
-          <InputInlineElement className={rightClassName} position="right">
-            {right}
-          </InputInlineElement>
-        )}
-      </div>
-      {helperText ||
-        (errorText && (
-          <InputMessage helperText={helperText} errorText={errorText} />
-        ))}
-    </InputContainer>
+        placeholder={placeholder}
+        type={type}
+      />
+      {right && !inline && (
+        <InputIcon className={rightClassName} icon={right} position="right" />
+      )}
+      {right && inline && (
+        <InputInlineElement className={rightClassName} position="right">
+          {right}
+        </InputInlineElement>
+      )}
+    </div>
   );
 }
 
@@ -125,25 +108,5 @@ function InputInlineElement({
     >
       {children}
     </span>
-  );
-}
-
-interface InputMessageProps {
-  helperText?: string;
-  errorText?: string;
-}
-
-function InputMessage({ helperText, errorText }: InputMessageProps) {
-  return (
-    <p
-      className={cn(
-        "text-muted-foreground text-sm",
-        errorText && "text-red-500",
-        helperText && "text-muted-foreground/80",
-      )}
-    >
-      {helperText && <span>{helperText}</span>}
-      {errorText && <span>{errorText}</span>}
-    </p>
   );
 }
