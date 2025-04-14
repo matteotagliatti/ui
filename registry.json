@@ -145,6 +145,22 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "in-view",
+      "type": "registry:component",
+      "title": "In View",
+      "description": "A component to animate a background",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/in-view.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
