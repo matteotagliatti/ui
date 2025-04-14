@@ -30,30 +30,6 @@ export default function DisclosureDemo() {
   };
 
   return (
-    <div className="flex items-start gap-4">
-      {/* Simple */}
-      <Disclosure className="border-border w-[250px] rounded-md border px-3">
-        <DisclosureTrigger>
-          <button className="w-full py-2 text-left text-sm" type="button">
-            Show more
-          </button>
-        </DisclosureTrigger>
-        <DisclosureContent>
-          <div className="overflow-hidden pb-3">
-            <div className="pt-1 font-mono text-sm">
-              <p>
-                This example demonstrates how you can use{" "}
-                <strong className="font-bold">Disclosure</strong> component.
-              </p>
-              <pre className="bg-muted mt-2 rounded-md p-2 text-xs">
-                {`function DisclosureBasic() {\n  return (\n    <Disclosure>\n      <DisclosureTrigger>\n        <button type='button'>\n          Show more\n        </button>\n      </DisclosureTrigger>\n      <DisclosureContent>\n        <div>hey</div>\n      </DisclosureContent>\n    </Disclosure>\n  );`}
-              </pre>
-            </div>
-          </div>
-        </DisclosureContent>
-      </Disclosure>
-
-      {/* With image */}
       <div className="relative h-[350px] w-[290px] overflow-hidden rounded-xl">
         <div onClick={() => setIsOpen(!isOpen)}>
           <motion.img
@@ -105,6 +81,5 @@ export default function DisclosureDemo() {
           </DisclosureContent>
         </Disclosure>
       </div>
-    </div>
   );
 }

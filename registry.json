@@ -17,32 +17,6 @@
       ]
     },
     {
-      "name": "use-click-outside",
-      "type": "registry:hook",
-      "title": "Use Click Outside",
-      "description": "A hook to handle click outside",
-      "categories": ["hooks"],
-      "files": [
-        {
-          "path": "registry/default/hooks/use-click-outside.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "use-measure",
-      "type": "registry:hook",
-      "title": "Use Measure",
-      "description": "A hook to measure a component",
-      "categories": ["hooks"],
-      "files": [
-        {
-          "path": "registry/default/hooks/use-measure.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",
@@ -70,44 +44,6 @@
         {
           "path": "registry/default/components/button-group.tsx",
           "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "navbar-dynamic",
-      "type": "registry:component",
-      "title": "Navbar Dynamic",
-      "description": "A dynamic navbar component",
-      "categories": ["motion"],
-      "dependencies": ["lucide-react", "motion"],
-      "registryDependencies": ["input", "button"],
-      "files": [
-        {
-          "path": "registry/default/components/navbar-dynamic.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/default/hooks/use-click-outside.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "navbar-expandable",
-      "type": "registry:component",
-      "title": "Navbar Expandable",
-      "description": "A expandable navbar component",
-      "categories": ["motion"],
-      "dependencies": ["lucide-react", "motion"],
-      "registryDependencies": ["input", "button"],
-      "files": [
-        {
-          "path": "registry/default/components/navbar-expandable.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/default/hooks/use-measure.ts",
-          "type": "registry:hook"
         }
       ]
     },
@@ -174,22 +110,6 @@
       "files": [
         {
           "path": "registry/default/components/disclosure.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "bento",
-      "type": "registry:component",
-      "title": "Bento",
-      "description": "A component to create a bento grid",
-      "categories": ["other"],
-      "usage": true,
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils", "button"],
-      "files": [
-        {
-          "path": "registry/default/components/bento.tsx",
           "type": "registry:component"
         }
       ]
