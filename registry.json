@@ -113,6 +113,22 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "transition-panel",
+      "type": "registry:component",
+      "title": "Transition Panel",
+      "description": "A transition panel component",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/transition-panel.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
