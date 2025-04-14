@@ -83,6 +83,22 @@
       ]
     },
     {
+      "name": "popover-animation",
+      "type": "registry:component",
+      "title": "Popover Animation",
+      "description": "A popover animation component",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/popover-animation.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "animated-background",
       "type": "registry:component",
       "title": "Animated Background",
