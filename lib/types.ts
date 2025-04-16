@@ -5,6 +5,7 @@ export enum Category {
   Input = "input",
   Motion = "motion",
   Dialog = "dialog",
+  Other = "other",
 }
 
 export interface ComponentCategory {

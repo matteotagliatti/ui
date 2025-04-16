@@ -311,7 +311,7 @@
       "type": "registry:component",
       "title": "Progress Bar",
       "description": "A progress bar component",
-      "categories": ["motion"],
+      "categories": ["other"],
       "usage": true,
       "registryDependencies": ["utils"],
       "files": [
