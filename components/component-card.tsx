@@ -9,16 +9,25 @@ interface Props {
 
 export function ComponentCard({ children, component, className }: Props) {
   function getComponentCardClassName() {
+    const classes: string[] = [];
+
+    const centeringCategories = [
+      Category.Button,
+      Category.Input,
+      Category.Motion,
+      Category.Dialog,
+      Category.Other,
+    ];
+
     if (
-      component.categories.includes(Category.Button) ||
-      component.categories.includes(Category.Input) ||
-      component.categories.includes(Category.Motion) ||
-      component.categories.includes(Category.Dialog)
+      centeringCategories.some((category) =>
+        component.categories.includes(category),
+      )
     ) {
-      return "flex items-center justify-center";
+      classes.push("flex items-center justify-center");
     }
 
-    return "";
+    return classes.join(" ");
   }
   return (
     <div

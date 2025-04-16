@@ -320,6 +320,27 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "sortable",
+      "type": "registry:component",
+      "title": "Sortable",
+      "description": "A sortable component",
+      "categories": ["other"],
+      "usage": true,
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities"
+      ],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/sortable.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
