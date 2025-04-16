@@ -32,6 +32,47 @@
       ]
     },
     {
+      "name": "input-datetime",
+      "type": "registry:component",
+      "title": "Input Datetime",
+      "description": "A input component with a date and time picker",
+      "categories": ["input"],
+      "dependencies": ["react-day-picker", "date-fns"],
+      "registryDependencies": [
+        "utils",
+        "input",
+        "popover",
+        "scroll-area",
+        "button",
+        "select"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/input-datetime.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/calendar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input-autocomplete",
+      "type": "registry:component",
+      "title": "Input Autocomplete",
+      "description": "A input component with an autocomplete",
+      "categories": ["input"],
+      "dependencies": ["lucide-react", "@tanstack/react-query", "cmdk"],
+      "registryDependencies": ["utils", "input", "label", "command", "popover"],
+      "files": [
+        {
+          "path": "registry/default/components/input-autocomplete.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "input-phone",
       "type": "registry:component",
       "title": "Input Phone",
@@ -48,6 +89,21 @@
       "files": [
         {
           "path": "registry/default/components/input-phone.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:component",
+      "title": "Dropzone",
+      "description": "A dropzone component",
+      "categories": ["input"],
+      "dependencies": ["react-dropzone"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/dropzone.tsx",
           "type": "registry:component"
         }
       ]
