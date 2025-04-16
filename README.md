@@ -1,8 +1,3 @@
-# Todo
+# UI Component Library
 
-- [ ] Input
-  - [ ] Generic
-  - [ ] Date
-- [ ] Dialog
-- [ ] Sortable
-- [ ] Progress Bar ??
+Random UI Components made with React, TailwindCSS, Radix UI and following shadcn/ui design system.
