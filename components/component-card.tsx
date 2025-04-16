@@ -12,7 +12,8 @@ export function ComponentCard({ children, component, className }: Props) {
     if (
       component.categories.includes(Category.Button) ||
       component.categories.includes(Category.Input) ||
-      component.categories.includes(Category.Motion)
+      component.categories.includes(Category.Motion) ||
+      component.categories.includes(Category.Dialog)
     ) {
       return "flex items-center justify-center";
     }
@@ -22,6 +23,7 @@ export function ComponentCard({ children, component, className }: Props) {
   return (
     <div
       className={cn(
+        "flex items-center justify-center",
         "group/item relative",
         "border-t first:border-t-0", // mobile
         // Desktop

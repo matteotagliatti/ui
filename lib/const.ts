@@ -18,6 +18,10 @@ export const categories: ComponentCategory[] = [
     name: "Button",
   },
   {
+    slug: Category.Dialog,
+    name: "Dialog",
+  },
+  {
     slug: Category.Motion,
     name: "Motion",
   },

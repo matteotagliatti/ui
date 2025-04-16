@@ -191,11 +191,27 @@
       ]
     },
     {
+      "name": "dialog-stack",
+      "type": "registry:component",
+      "title": "Dialog Stack",
+      "description": "A dialog stack component",
+      "categories": ["dialog"],
+      "usage": true,
+      "dependencies": ["lucide-react", "@radix-ui/react-dialog"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/dialog-stack.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "dialog-morphing",
       "type": "registry:component",
       "title": "Dialog Morphing",
       "description": "A dialog morphing component",
-      "categories": ["motion"],
+      "categories": ["dialog", "motion"],
       "usage": true,
       "dependencies": ["motion", "lucide-react"],
       "registryDependencies": ["utils"],
