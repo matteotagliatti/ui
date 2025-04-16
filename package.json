@@ -55,6 +55,8 @@
   },
   "overrides": {
     "react-day-picker": {
+      "react": "$react",
+      "react-dom": "$react-dom",
       "date-fns": "$date-fns"
     }
   }
