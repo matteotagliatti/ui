@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-fancy",
+  "type": "registry:component",
+  "title": "Input Fancy",
+  "description": "A fancy input component",
+  "registryDependencies": [
+    "utils",
+    "input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/input-fancy.tsx",
+      "content": "\"use client\";\n\nimport { Input } from \"@/components/ui/input\";\nimport { cn } from \"@/lib/utils\";\n\ninterface Props extends React.InputHTMLAttributes<HTMLInputElement> {\n  inline?: boolean;\n  left?: React.ReactNode;\n  right?: React.ReactNode;\n  placeholder: string;\n  type: string;\n  required?: boolean;\n  helperText?: string;\n  errorText?: string;\n  leftClassName?: string;\n  rightClassName?: string;\n  className?: string;\n}\n\nexport function InputFancy({\n  inline = false,\n  left,\n  right,\n  placeholder,\n  type,\n  className,\n  leftClassName,\n  rightClassName,\n  ...props\n}: Props) {\n  return (\n    <div\n      className={cn(\n        \"relative\",\n        inline && \"flex rounded-md shadow-sm shadow-black/5\",\n      )}\n    >\n      {left && !inline && (\n        <InputIcon className={leftClassName} icon={left} position=\"left\" />\n      )}\n      {left && inline && (\n        <InputInlineElement className={leftClassName} position=\"left\">\n          {left}\n        </InputInlineElement>\n      )}\n      <Input\n        id={props.id}\n        className={cn(\n          left && !inline && \"peer ps-9\",\n          left && inline && \"-ms-px rounded-s-none border-s-0 shadow-none\",\n          right && !inline && \"peer pe-9\",\n          right && inline && \"-ms-px rounded-e-none border-e-0 shadow-none\",\n          className,\n        )}\n        placeholder={placeholder}\n        type={type}\n      />\n      {right && !inline && (\n        <InputIcon className={rightClassName} icon={right} position=\"right\" />\n      )}\n      {right && inline && (\n        <InputInlineElement className={rightClassName} position=\"right\">\n          {right}\n        </InputInlineElement>\n      )}\n    </div>\n  );\n}\n\ninterface InputIconProps {\n  icon: React.ReactNode;\n  position: \"left\" | \"right\";\n  className?: string;\n}\n\nfunction InputIcon({ icon, position, className }: InputIconProps) {\n  return (\n    <div\n      className={cn(\n        \"text-muted-foreground/80 pointer-events-none absolute inset-y-0 flex items-center justify-center text-sm peer-disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4\",\n        position === \"left\" && \"start-0 ps-3\",\n        position === \"right\" && \"end-0 pe-3\",\n        className,\n      )}\n    >\n      {icon}\n    </div>\n  );\n}\n\ninterface InputInlineElementProps {\n  children: React.ReactNode;\n  position: \"left\" | \"right\";\n  className?: string;\n}\n\nfunction InputInlineElement({\n  children,\n  position,\n  className,\n}: InputInlineElementProps) {\n  return (\n    <span\n      className={cn(\n        \"border-input text-muted-foreground dark:bg-input/30 inline-flex items-center border bg-transparent px-3 text-sm\",\n        position === \"left\" && \"rounded-s-md\",\n        position === \"right\" && \"rounded-e-md\",\n        className,\n      )}\n    >\n      {children}\n    </span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "input"
+  ]
+}

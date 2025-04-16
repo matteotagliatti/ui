@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "transition-panel",
+  "type": "registry:component",
+  "title": "Transition Panel",
+  "description": "A transition panel component",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/transition-panel.tsx",
+      "content": "\"use client\";\n\nimport {\n  AnimatePresence,\n  Transition,\n  Variant,\n  motion,\n  MotionProps,\n} from \"motion/react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface Props extends MotionProps {\n  children: React.ReactNode[];\n  className?: string;\n  transition?: Transition;\n  activeIndex: number;\n  variants?: { enter: Variant; center: Variant; exit: Variant };\n}\n\nexport function TransitionPanel({\n  children,\n  className,\n  transition,\n  variants,\n  activeIndex,\n  ...motionProps\n}: Props) {\n  return (\n    <div className={cn(\"relative\", className)}>\n      <AnimatePresence\n        initial={false}\n        mode=\"popLayout\"\n        custom={motionProps.custom}\n      >\n        <motion.div\n          key={activeIndex}\n          variants={variants}\n          transition={transition}\n          initial=\"enter\"\n          animate=\"center\"\n          exit=\"exit\"\n          {...motionProps}\n        >\n          {children[activeIndex]}\n        </motion.div>\n      </AnimatePresence>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "motion"
+  ]
+}

@@ -4,13 +4,21 @@
   "type": "registry:component",
   "title": "Button Group",
   "description": "A button group component",
-  "dependencies": ["class-variance-authority"],
-  "registryDependencies": ["button", "utils"],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/default/components/button-group.tsx",
-      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport React from \"react\";\n\nconst buttonGroupVariants = cva(\n  \"flex sm:items-center max-sm:gap-1 max-sm:flex-col [&>*:focus-within]:ring-1 [&>*:focus-within]:z-10 [&>*]:ring-offset-0 sm:[&>*:not(:first-child)]:rounded-l-none sm:[&>*:not(:last-child)]:rounded-r-none\",\n  {\n    variants: {\n      size: {\n        default: \"[&>*]:h-10 [&>*]:px-4 [&>*]:py-2\",\n        sm: \"[&>*]:h-9 [&>*]:rounded-md [&>*]:px-3\",\n        lg: \"[&>*]:h-11 [&>*]:rounded-md [&>*]:px-8\",\n        icon: \"[&>*]:h-10 [&>*]:w-10\",\n      },\n      separated: {\n        true: \"[&>*]:outline [&>*]:outline-1 [&>*]:outline-zinc-500 gap-0.5 [&>*:focus-within]:ring-offset-2\",\n        false: \"[&>*:focus-within]:ring-offset-1\",\n      },\n    },\n    defaultVariants: {\n      separated: false,\n      size: \"default\",\n    },\n  }\n);\n\nexport interface ButtonGroupProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof buttonGroupVariants> {\n  separated?: boolean;\n}\n\nconst ButtonGroup = ({\n  children,\n  className,\n  size,\n  separated = false,\n  ...props\n}: ButtonGroupProps) => {\n  return (\n    <div\n      className={cn(buttonGroupVariants({ size, className, separated }))}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n};\n\nButtonGroup.displayName = \"ButtonGroup\";\n\nexport { ButtonGroup };\n",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport React from \"react\";\n\nconst buttonGroupVariants = cva(\n  \"flex max-sm:flex-col max-sm:gap-1 sm:items-center [&>*]:ring-offset-0 [&>*:focus-within]:z-10 [&>*:focus-within]:ring-1 sm:[&>*:not(:first-child)]:rounded-l-none sm:[&>*:not(:last-child)]:rounded-r-none\",\n  {\n    variants: {\n      size: {\n        default: \"[&>*]:h-10 [&>*]:px-4 [&>*]:py-2\",\n        sm: \"[&>*]:h-9 [&>*]:rounded-md [&>*]:px-3\",\n        lg: \"[&>*]:h-11 [&>*]:rounded-md [&>*]:px-8\",\n        icon: \"[&>*]:h-10 [&>*]:w-10\",\n      },\n      separated: {\n        true: \"gap-0.5 [&>*]:outline [&>*]:outline-1 [&>*]:outline-zinc-500 [&>*:focus-within]:ring-offset-2\",\n        false: \"[&>*:focus-within]:ring-offset-1\",\n      },\n    },\n    defaultVariants: {\n      separated: false,\n      size: \"default\",\n    },\n  },\n);\n\nexport interface ButtonGroupProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof buttonGroupVariants> {\n  separated?: boolean;\n}\n\nexport function ButtonGroup({\n  children,\n  className,\n  size,\n  separated = false,\n  ...props\n}: ButtonGroupProps) {\n  return (\n    <div\n      className={cn(buttonGroupVariants({ size, className, separated }))}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n",
       "type": "registry:component"
     }
+  ],
+  "categories": [
+    "button"
   ]
 }

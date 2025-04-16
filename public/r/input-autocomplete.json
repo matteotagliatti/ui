@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-autocomplete",
+  "type": "registry:component",
+  "title": "Input Autocomplete",
+  "description": "A input component with an autocomplete",
+  "dependencies": [
+    "lucide-react",
+    "@tanstack/react-query",
+    "cmdk"
+  ],
+  "registryDependencies": [
+    "utils",
+    "input",
+    "label",
+    "command",
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/input-autocomplete.tsx",
+      "content": "\"use client\";\n\nimport {\n  Command,\n  CommandEmpty,\n  CommandGroup,\n  CommandItem,\n  CommandList,\n} from \"@/components/ui/command\";\nimport { Input } from \"@/components/ui/input\";\nimport {\n  Popover,\n  PopoverAnchor,\n  PopoverContent,\n} from \"@/components/ui/popover\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { cn } from \"@/lib/utils\";\nimport { Command as CommandPrimitive } from \"cmdk\";\nimport { Check } from \"lucide-react\";\nimport { useMemo, useState } from \"react\";\n\ninterface Props<T extends string> {\n  selectedValue: T;\n  onSelectedValueChange: (value: T) => void;\n  searchValue: string;\n  onSearchValueChange: (value: string) => void;\n  items: { value: T; label: string }[];\n  isLoading?: boolean;\n  emptyMessage?: string;\n  placeholder?: string;\n}\n\nexport function AutoComplete<T extends string>({\n  selectedValue,\n  onSelectedValueChange,\n  searchValue,\n  onSearchValueChange,\n  items,\n  isLoading,\n  emptyMessage = \"No items.\",\n  placeholder = \"Search...\",\n}: Props<T>) {\n  const [open, setOpen] = useState(false);\n\n  const labels = useMemo(\n    () =>\n      items.reduce(\n        (acc, item) => {\n          acc[item.value] = item.label;\n          return acc;\n        },\n        {} as Record<string, string>,\n      ),\n    [items],\n  );\n\n  const reset = () => {\n    onSelectedValueChange(\"\" as T);\n    onSearchValueChange(\"\");\n  };\n\n  const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {\n    if (\n      !e.relatedTarget?.hasAttribute(\"cmdk-list\") &&\n      labels[selectedValue] !== searchValue\n    ) {\n      reset();\n    }\n  };\n\n  const onSelectItem = (inputValue: string) => {\n    if (inputValue === selectedValue) {\n      reset();\n    } else {\n      onSelectedValueChange(inputValue as T);\n      onSearchValueChange(labels[inputValue] ?? \"\");\n    }\n    setOpen(false);\n  };\n\n  return (\n    <div className=\"flex items-center\">\n      <Popover open={open} onOpenChange={setOpen}>\n        <Command shouldFilter={false}>\n          <PopoverAnchor asChild>\n            <CommandPrimitive.Input\n              asChild\n              value={searchValue}\n              onValueChange={onSearchValueChange}\n              onKeyDown={(e) => setOpen(e.key !== \"Escape\")}\n              onMouseDown={() => setOpen((open) => !!searchValue || !open)}\n              onFocus={() => setOpen(true)}\n              onBlur={onInputBlur}\n            >\n              <Input\n                className=\"dark:bg-transparent\"\n                placeholder={placeholder}\n              />\n            </CommandPrimitive.Input>\n          </PopoverAnchor>\n          {!open && <CommandList aria-hidden=\"true\" className=\"hidden\" />}\n          <PopoverContent\n            asChild\n            onOpenAutoFocus={(e) => e.preventDefault()}\n            onInteractOutside={(e) => {\n              if (\n                e.target instanceof Element &&\n                e.target.hasAttribute(\"cmdk-input\")\n              ) {\n                e.preventDefault();\n              }\n            }}\n            className=\"w-[var(--radix-popover-trigger-width)] p-0\"\n          >\n            <CommandList>\n              {isLoading && (\n                <CommandPrimitive.Loading>\n                  <div className=\"p-1\">\n                    <Skeleton className=\"h-6 w-full\" />\n                  </div>\n                </CommandPrimitive.Loading>\n              )}\n              {items.length > 0 && !isLoading ? (\n                <CommandGroup>\n                  {items.map((option) => (\n                    <CommandItem\n                      key={option.value}\n                      value={option.value}\n                      onMouseDown={(e) => e.preventDefault()}\n                      onSelect={onSelectItem}\n                      className=\"flex justify-between\"\n                    >\n                      <span>{option.label}</span>\n                      <Check\n                        className={cn(\n                          \"ml-2 h-4 w-4\",\n                          selectedValue === option.value\n                            ? \"opacity-100\"\n                            : \"opacity-0\",\n                        )}\n                      />\n                    </CommandItem>\n                  ))}\n                </CommandGroup>\n              ) : null}\n              {!isLoading ? (\n                <CommandEmpty>{emptyMessage ?? \"No items.\"}</CommandEmpty>\n              ) : null}\n            </CommandList>\n          </PopoverContent>\n        </Command>\n      </Popover>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "input"
+  ]
+}
