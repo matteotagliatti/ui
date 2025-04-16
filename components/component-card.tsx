@@ -11,6 +11,10 @@ export function ComponentCard({ children, component, className }: Props) {
   function getComponentCardClassName() {
     const classes: string[] = [];
 
+    if (component.name === "kanban") {
+      classes.push("lg:col-span-2");
+    }
+
     const centeringCategories = [
       Category.Button,
       Category.Input,

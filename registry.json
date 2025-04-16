@@ -341,6 +341,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "kanban",
+      "type": "registry:component",
+      "title": "Kanban",
+      "description": "A kanban component",
+      "categories": ["other"],
+      "usage": true,
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities"
+      ],
+      "registryDependencies": ["utils", "button"],
+      "files": [
+        {
+          "path": "registry/default/components/kanban.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/lib/composition.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }
