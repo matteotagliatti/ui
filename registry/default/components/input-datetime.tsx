@@ -84,13 +84,17 @@ export function InputDatetime({
               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
+          <PopoverContent
+            className="bg-popover border-border w-auto p-0"
+            align="start"
+          >
             <Calendar
               mode="single"
               captionLayout="dropdown"
               selected={date || undefined}
               onSelect={handleDateSelect}
               defaultMonth={date || new Date()}
+              className="bg-popover text-foreground"
             />
           </PopoverContent>
         </Popover>
@@ -98,10 +102,10 @@ export function InputDatetime({
 
       <div className="flex flex-col">
         <Select value={time} onValueChange={handleTimeChange}>
-          <SelectTrigger className="w-[120px] font-normal focus:ring-0 focus:ring-offset-0">
+          <SelectTrigger className="bg-background border-border text-foreground w-[120px] font-normal focus:ring-0 focus:ring-offset-0">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-popover text-foreground border-border">
             <ScrollArea className="h-[15rem]">
               {Array.from({ length: 96 }).map((_, i) => {
                 const hour = Math.floor(i / 4)
@@ -109,7 +113,11 @@ export function InputDatetime({
                   .padStart(2, "0");
                 const minute = ((i % 4) * 15).toString().padStart(2, "0");
                 return (
-                  <SelectItem key={i} value={`${hour}:${minute}`}>
+                  <SelectItem
+                    key={i}
+                    value={`${hour}:${minute}`}
+                    className="text-foreground hover:bg-accent hover:text-accent-foreground"
+                  >
                     {hour}:{minute}
                   </SelectItem>
                 );

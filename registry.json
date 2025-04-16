@@ -191,6 +191,26 @@
       ]
     },
     {
+      "name": "dialog-morphing",
+      "type": "registry:component",
+      "title": "Dialog Morphing",
+      "description": "A dialog morphing component",
+      "categories": ["motion"],
+      "usage": true,
+      "dependencies": ["motion", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/dialog-morphing.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-click-outside.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "animated-background",
       "type": "registry:component",
       "title": "Animated Background",

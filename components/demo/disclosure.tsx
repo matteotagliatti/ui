@@ -54,7 +54,7 @@ export default function DisclosureDemo() {
             type="button"
             onClick={() => setIsOpen(!isOpen)}
           >
-            lesothers.studio
+            Lorem ipsum
           </button>
         </DisclosureTrigger>
         <DisclosureContent>
