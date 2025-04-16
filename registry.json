@@ -305,6 +305,21 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:component",
+      "title": "Progress Bar",
+      "description": "A progress bar component",
+      "categories": ["motion"],
+      "usage": true,
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/progress-bar.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
