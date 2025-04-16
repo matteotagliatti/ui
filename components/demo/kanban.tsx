@@ -22,70 +22,8 @@ interface Task {
   dueDate?: string;
 }
 
-const COLUMN_TITLES: Record<string, string> = {
-  backlog: "Backlog",
-  inProgress: "In Progress",
-  done: "Done",
-};
-
 export default function KanbanDemo() {
-  const [columns, setColumns] = useState<Record<string, Task[]>>({
-    backlog: [
-      {
-        id: 1,
-        title: "Task 1",
-        priority: "high",
-        assignee: "John Doe",
-        dueDate: "2024-04-01",
-      },
-      {
-        id: 2,
-        title: "Task 2",
-        priority: "medium",
-        assignee: "Jane Smith",
-        dueDate: "2024-04-05",
-      },
-      {
-        id: 3,
-        title: "Task 3",
-        priority: "low",
-        assignee: "Bob Johnson",
-        dueDate: "2024-04-10",
-      },
-    ],
-    inProgress: [
-      {
-        id: 4,
-        title: "Task 4",
-        priority: "high",
-        assignee: "Alice Brown",
-        dueDate: "2024-03-28",
-      },
-      {
-        id: 5,
-        title: "Task 5",
-        priority: "medium",
-        assignee: "Charlie Wilson",
-        dueDate: "2024-04-02",
-      },
-    ],
-    done: [
-      {
-        id: 7,
-        title: "Task 6",
-        priority: "high",
-        assignee: "Eve Davis",
-        dueDate: "2024-03-25",
-      },
-      {
-        id: 8,
-        title: "Task 7",
-        priority: "low",
-        assignee: "Frank White",
-        dueDate: "2024-03-24",
-      },
-    ],
-  });
+  const [columns, setColumns] = useState<Record<string, Task[]>>(data);
 
   return (
     <Kanban
@@ -163,3 +101,67 @@ export default function KanbanDemo() {
     </Kanban>
   );
 }
+
+const COLUMN_TITLES: Record<string, string> = {
+  backlog: "Backlog",
+  inProgress: "In Progress",
+  done: "Done",
+};
+
+const data: Record<string, Task[]> = {
+  backlog: [
+    {
+      id: 1,
+      title: "Task 1",
+      priority: "high",
+      assignee: "John Doe",
+      dueDate: "2024-04-01",
+    },
+    {
+      id: 2,
+      title: "Task 2",
+      priority: "medium",
+      assignee: "Jane Smith",
+      dueDate: "2024-04-05",
+    },
+    {
+      id: 3,
+      title: "Task 3",
+      priority: "low",
+      assignee: "Bob Johnson",
+      dueDate: "2024-04-10",
+    },
+  ],
+  inProgress: [
+    {
+      id: 4,
+      title: "Task 4",
+      priority: "high",
+      assignee: "Alice Brown",
+      dueDate: "2024-03-28",
+    },
+    {
+      id: 5,
+      title: "Task 5",
+      priority: "medium",
+      assignee: "Charlie Wilson",
+      dueDate: "2024-04-02",
+    },
+  ],
+  done: [
+    {
+      id: 7,
+      title: "Task 6",
+      priority: "high",
+      assignee: "Eve Davis",
+      dueDate: "2024-03-25",
+    },
+    {
+      id: 8,
+      title: "Task 7",
+      priority: "low",
+      assignee: "Frank White",
+      dueDate: "2024-03-24",
+    },
+  ],
+};
