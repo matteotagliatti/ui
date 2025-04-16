@@ -121,4 +121,23 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Custom scrollbar styling */
+  pre::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  pre::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 5px;
+  }
+
+  pre {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
 }

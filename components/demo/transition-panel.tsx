@@ -27,7 +27,7 @@ export default function TransitionPanelDemo() {
   return (
     <div className="space-y-4">
       {/* Card */}
-      <div className="bg-muted w-[364px] overflow-hidden rounded-xl border">
+      <div className="bg-muted w-[320px] overflow-hidden rounded-xl border">
         <TransitionPanel
           activeIndex={cardActiveIndex}
           variants={{

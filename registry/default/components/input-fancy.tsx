@@ -3,8 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-interface InputFancyProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   inline?: boolean;
   left?: React.ReactNode;
   right?: React.ReactNode;
@@ -15,6 +14,7 @@ interface InputFancyProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorText?: string;
   leftClassName?: string;
   rightClassName?: string;
+  className?: string;
 }
 
 export function InputFancy({
@@ -23,10 +23,11 @@ export function InputFancy({
   right,
   placeholder,
   type,
+  className,
   leftClassName,
   rightClassName,
   ...props
-}: InputFancyProps) {
+}: Props) {
   return (
     <div
       className={cn(
@@ -49,6 +50,7 @@ export function InputFancy({
           left && inline && "-ms-px rounded-s-none border-s-0 shadow-none",
           right && !inline && "peer pe-9",
           right && inline && "-ms-px rounded-e-none border-e-0 shadow-none",
+          className,
         )}
         placeholder={placeholder}
         type={type}
@@ -75,7 +77,7 @@ function InputIcon({ icon, position, className }: InputIconProps) {
   return (
     <div
       className={cn(
-        "text-muted-foreground/80 pointer-events-none absolute inset-y-0 flex items-center justify-center peer-disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4",
+        "text-muted-foreground/80 pointer-events-none absolute inset-y-0 flex items-center justify-center text-sm peer-disabled:opacity-50 [&_svg]:h-4 [&_svg]:w-4",
         position === "left" && "start-0 ps-3",
         position === "right" && "end-0 pe-3",
         className,

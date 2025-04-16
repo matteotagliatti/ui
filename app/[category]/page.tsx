@@ -4,6 +4,7 @@ import { categories } from "@/lib/const";
 import { getCategory, getComponentsByCategory } from "@/lib/utils";
 import { Category } from "@/lib/types";
 import { notFound } from "next/navigation";
+import { PageHeader } from "@/components/page-header";
 
 interface Props {
   params: Promise<{ category: Category }>;
@@ -21,10 +22,13 @@ export default async function CategoryPage({ params }: Props) {
   const components = getComponentsByCategory(category.slug);
 
   return (
-    <PageGrid>
-      {components.map((component) => (
-        <Component key={component.name} component={component} />
-      ))}
-    </PageGrid>
+    <>
+      <PageHeader title={category.name} />
+      <PageGrid>
+        {components.map((component) => (
+          <Component key={component.name} component={component} />
+        ))}
+      </PageGrid>
+    </>
   );
 }
