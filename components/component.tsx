@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { readComponentSource } from "@/lib/server";
-import { ComponentPath, MyRegistryItem } from "@/lib/types";
+import { Category, ComponentPath, MyRegistryItem } from "@/lib/types";
 import { CodeBlock } from "./code-block";
 import { ComponentCard } from "./component-card";
 import { ComponentCLI } from "./component-cli";
@@ -14,9 +14,10 @@ import { ComponentLoader } from "./component-loader";
 
 interface Props {
   component: MyRegistryItem;
+  category?: Category;
 }
 
-export async function Component({ component }: Props) {
+export async function Component({ component, category }: Props) {
   const source = await readComponentSource(
     component.name,
     ComponentPath.registry,
@@ -29,7 +30,11 @@ export async function Component({ component }: Props) {
   }
 
   return (
-    <ComponentCard component={component} key={component.name}>
+    <ComponentCard
+      component={component}
+      key={component.name}
+      category={category}
+    >
       <ComponentLoader component={component} />
       <ComponentDetails component={component}>
         <ComponentCLI name={component.name} />

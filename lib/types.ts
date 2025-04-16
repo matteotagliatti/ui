@@ -16,6 +16,7 @@ export interface ComponentCategory {
 export type MyRegistryItem = RegistryItem & {
   categories: Category[];
   usage?: boolean;
+  cols?: number;
 };
 
 export enum ComponentPath {

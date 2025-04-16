@@ -5,14 +5,23 @@ interface Props {
   children: React.ReactNode;
   component: MyRegistryItem;
   className?: string;
+  category?: Category;
 }
 
-export function ComponentCard({ children, component, className }: Props) {
+export function ComponentCard({
+  children,
+  component,
+  className,
+  category,
+}: Props) {
   function getComponentCardClassName() {
     const classes: string[] = [];
 
-    if (component.name === "kanban") {
-      classes.push("lg:col-span-2");
+    if (component.cols === 3) {
+      classes.push(
+        `lg:col-span-3 lg:border-l-0`,
+        category ? "lg:!border-t" : "",
+      );
     }
 
     const centeringCategories = [
@@ -44,7 +53,6 @@ export function ComponentCard({ children, component, className }: Props) {
         "lg:nth-[n+4]:border-t", // add top border to all other rows
         "border-r-0", // remove right border from all elements
         "border-l-0 lg:border-l lg:nth-[3n+1]:border-l-0",
-
         getComponentCardClassName(),
         className,
       )}

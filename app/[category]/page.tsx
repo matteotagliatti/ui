@@ -26,7 +26,11 @@ export default async function CategoryPage({ params }: Props) {
       <PageHeader title={category.name} />
       <PageGrid>
         {components.map((component) => (
-          <Component key={component.name} component={component} />
+          <Component
+            key={component.name}
+            component={component}
+            category={category.slug}
+          />
         ))}
       </PageGrid>
     </>

@@ -349,6 +349,7 @@
       "description": "A kanban component",
       "categories": ["other"],
       "usage": true,
+      "cols": 3,
       "dependencies": [
         "@radix-ui/react-slot",
         "@dnd-kit/core",
