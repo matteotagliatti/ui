@@ -262,6 +262,25 @@
       ]
     },
     {
+      "name": "wheel-picker",
+      "type": "registry:component",
+      "title": "Wheel Picker",
+      "description": "A wheel picker component",
+      "categories": ["input"],
+      "usage": true,
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/components/wheel-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "animated-background",
       "type": "registry:component",
       "title": "Animated Background",
