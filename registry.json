@@ -124,6 +124,22 @@
       ]
     },
     {
+      "name": "button-effect",
+      "type": "registry:component",
+      "title": "Button Effect",
+      "description": "A button effect component",
+      "categories": ["button"],
+      "usage": true,
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["button", "utils"],
+      "files": [
+        {
+          "path": "registry/default/components/button-effect.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "button-group",
       "type": "registry:component",
       "title": "Button Group",

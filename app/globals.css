@@ -43,7 +43,13 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Custom animations */
+  --animate-shine: shine 3s ease-out infinite;
+  --animate-gradient-flow: gradientFlow 10s ease 0s infinite normal none running;
 }
+
+
 
 :root {
   --radius: 0.625rem;
@@ -78,6 +84,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Gradient colors for button effects */
+  --gradient-lime: oklch(0.8 0.15 120);
+  --gradient-ocean: oklch(0.7 0.12 200);
+  --gradient-wine: oklch(0.6 0.18 320);
+  --gradient-rust: oklch(0.65 0.16 40);
 }
 
 .dark {
@@ -112,6 +124,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
+  /* Gradient colors for button effects - dark mode */
+  --gradient-lime: oklch(0.75 0.18 125);
+  --gradient-ocean: oklch(0.65 0.15 205);
+  --gradient-wine: oklch(0.55 0.2 325);
+  --gradient-rust: oklch(0.6 0.18 45);
 }
 
 @layer base {
@@ -139,5 +157,18 @@
   pre {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
+  }
+
+  /* Custom animations for button effects */
+  @keyframes shine {
+    0% { background-position: 200% 0; }
+    25% { background-position: -200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
