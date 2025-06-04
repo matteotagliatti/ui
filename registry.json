@@ -207,6 +207,25 @@
       ]
     },
     {
+      "name": "dialog-responsive",
+      "type": "registry:component",
+      "title": "Dialog Responsive",
+      "description": "A responsive dialog component",
+      "categories": ["dialog"],
+      "usage": true,
+      "registryDependencies": ["utils", "dialog", "drawer"],
+      "files": [
+        {
+          "path": "registry/default/components/dialog-responsive.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "dialog-stack",
       "type": "registry:component",
       "title": "Dialog Stack",

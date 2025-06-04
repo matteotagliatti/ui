@@ -5,8 +5,7 @@
   "title": "Button Effect",
   "description": "A button effect component",
   "dependencies": [
-    "class-variance-authority",
-    "lucide-react"
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "button",
