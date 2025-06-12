@@ -1,360 +1,446 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 import {
-  Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
+  Command,
 } from "@/components/ui/command";
 import {
-  Popover,
   PopoverContent,
+  Popover,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { useDebounce } from "@/registry/default/hooks/use-debounce";
-import {
-  CheckIcon,
-  ChevronDown,
-  ChevronsUpDown,
-  LoaderCircle,
-} from "lucide-react";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Check, ChevronDown, Loader2, Trash } from "lucide-react";
+import { useDebounce } from "../hooks/use-debounce";
+import { Button } from "@/components/ui/button";
 
-export type SelectOption = {
+type SelectFancyOption = {
   value: string;
   label: string;
+  disabled?: boolean;
+  description?: string;
   icon?: React.ReactNode;
-  disabled?: boolean;
 };
 
-type AsyncProps = {
-  isAsync: true;
-  onSearch: (query: string) => Promise<SelectOption[]>;
-  debounceMs?: number;
-  options?: SelectOption[];
-};
-
-type SyncProps = {
-  isAsync?: false;
-  onSearch?: never;
-  debounceMs?: never;
-  options: SelectOption[];
-};
-
-type BaseSelectFancyProps = {
-  disabled?: boolean;
-  placeholder?: string;
-  slim?: boolean;
+type SelectFancyBaseProps = {
   className?: string;
-  searchPlaceholder?: string;
-  emptyMessage?: string;
-  renderOption?: (option: SelectOption, isSelected: boolean) => React.ReactNode;
-  renderSelected?: (option: SelectOption | SelectOption[]) => React.ReactNode;
-} & (AsyncProps | SyncProps);
-
-type SingleSelectProps = BaseSelectFancyProps & {
-  multiple?: false;
-  onChange?: (option: SelectOption) => void;
-  value?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  emptyText?: string;
+  inputPlaceholder?: string;
+  required?: boolean;
 };
 
-type MultipleSelectProps = BaseSelectFancyProps & {
-  multiple: true;
-  onChange: (options: SelectOption[]) => void;
-  value?: string[];
-};
+type SelectFancyProps = {
+  options: SelectFancyOption[];
+  value: string;
+  onValueChange: (value: string) => void;
+} & SelectFancyBaseProps;
 
-type Props = SingleSelectProps | MultipleSelectProps;
-
-export function SelectFancy({
-  options = [],
-  onChange,
+function SelectFancy({
+  options,
   value,
-  disabled = false,
-  placeholder = "Select an option",
-  searchPlaceholder = "Search...",
-  emptyMessage = "No options found.",
-  slim = false,
-  multiple = false,
+  onValueChange,
+  placeholder,
+  disabled,
+  emptyText,
+  inputPlaceholder,
   className,
-  renderOption,
-  renderSelected,
-  isAsync,
-  onSearch,
-  debounceMs = 300,
-  ...props
-}: Props) {
+  required,
+}: SelectFancyProps) {
   const [open, setOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [asyncOptions, setAsyncOptions] = useState<SelectOption[]>([]);
-  const [forceUpdateKey, setForceUpdateKey] = useState(0);
-  const [shouldFocus, setShouldFocus] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const debouncedSearch = useDebounce(searchQuery, debounceMs);
-
-  const displayOptions = useMemo(() => {
-    if (isAsync) {
-      if (debouncedSearch) {
-        return asyncOptions;
-      }
-
-      return options;
-    }
-
-    if (!searchQuery) {
-      return options;
-    }
-    return options.filter((option) =>
-      option.label.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    isAsync,
-    asyncOptions,
-    options,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...(isAsync ? [debouncedSearch] : [searchQuery]),
-  ]);
-
-  useEffect(() => {
-    if (!isAsync) {
-      return;
-    }
-
-    const fetchOptions = async () => {
-      setIsLoading(true);
-      try {
-        const results = await onSearch(debouncedSearch);
-
-        const wasFocused = document.activeElement === inputRef.current; // Check if input is focused
-
-        setAsyncOptions(results || []);
-
-        setForceUpdateKey((prev) => prev + 1); // Force a re-render and remember to focus
-        if (wasFocused) {
-          setShouldFocus(true);
-        }
-      } catch (error) {
-        console.error("Error fetching options:", error);
-        setAsyncOptions([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (debouncedSearch) {
-      fetchOptions();
-    } else {
-      setAsyncOptions([]);
-    }
-  }, [debouncedSearch, isAsync, onSearch]);
-
-  useEffect(() => {
-    if (shouldFocus && inputRef.current && isAsync) {
-      // Focus the input after a small delay to ensure component is rendered
-      setTimeout(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
-        setShouldFocus(false);
-      }, 50);
-    }
-  }, [isAsync, shouldFocus, forceUpdateKey]);
-
-  useEffect(() => {
-    if (!value) {
-      if (selectedOptions.length > 0) {
-        setSelectedOptions([]);
-      }
-      return;
-    }
-
-    if (multiple && Array.isArray(value)) {
-      const currentValues = selectedOptions.map((o) => o.value);
-      const hasChanges =
-        value.length !== currentValues.length ||
-        !value.every((v) => currentValues.includes(v));
-
-      if (hasChanges) {
-        const initialOptions = options.filter((option) =>
-          value.includes(option.value),
-        );
-        setSelectedOptions(initialOptions);
-      }
-    } else if (!multiple && typeof value === "string") {
-      const currentValue = selectedOptions[0]?.value;
-      if (value !== currentValue) {
-        const initialOption = options.find((option) => option.value === value);
-        setSelectedOptions(initialOption ? [initialOption] : []);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, options, multiple]);
-
-  const handleSelect = useCallback(
-    (option: SelectOption) => {
-      if (multiple) {
-        const newSelection = selectedOptions.some(
-          (o) => o.value === option.value,
-        )
-          ? selectedOptions.filter((o) => o.value !== option.value)
-          : [...selectedOptions, option];
-
-        setSelectedOptions(newSelection);
-        (onChange as MultipleSelectProps["onChange"])?.(newSelection);
-      } else {
-        setSelectedOptions([option]);
-        (onChange as SingleSelectProps["onChange"])?.(option);
-        setOpen(false);
-      }
-    },
-    [onChange, multiple, selectedOptions],
-  );
-
-  const defaultRenderOption = (option: SelectOption, isSelected: boolean) => (
-    <div className="flex flex-grow items-center gap-2 overflow-hidden">
-      {option.icon && (
-        <div className="inline-flex h-5 w-5 shrink-0 items-center justify-center">
-          {option.icon}
-        </div>
-      )}
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-        {option.label}
-      </span>
-      <CheckIcon
-        className={cn(
-          "ml-auto h-4 w-4 shrink-0",
-          isSelected ? "opacity-100" : "opacity-0",
-        )}
-      />
-    </div>
-  );
-
-  const defaultRenderSelected = (selected: SelectOption | SelectOption[]) => {
-    if (Array.isArray(selected)) {
-      return (
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-          {selected.length} selected
-        </span>
-      );
-    }
-
-    return (
-      <div className="flex items-center gap-2 overflow-hidden">
-        {selected.icon && (
-          <div className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
-            {selected.icon}
-          </div>
-        )}
-        {slim === false && (
-          <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-            {selected.label}
-          </span>
-        )}
-      </div>
-    );
-  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        className={cn(
-          "border-input ring-offset-background placeholder:text-muted-foreground hover:bg-secondary/80 flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-          slim && "w-min gap-1",
-          className,
-        )}
-        disabled={disabled}
-        {...props}
-      >
-        {selectedOptions.length > 0 ? (
-          <div className="flex flex-grow items-center gap-2 overflow-hidden">
-            {renderSelected
-              ? renderSelected(multiple ? selectedOptions : selectedOptions[0])
-              : defaultRenderSelected(
-                  multiple ? selectedOptions : selectedOptions[0],
-                )}
-          </div>
-        ) : (
-          <span className="flex items-center gap-2">{placeholder}</span>
-        )}
-
-        {!slim ? (
-          <ChevronDown size={16} />
-        ) : (
-          <ChevronsUpDown size={16} className="text-muted-foreground" />
-        )}
-      </PopoverTrigger>
-      <PopoverContent
-        collisionPadding={10}
-        side="bottom"
-        className="min-w-[--radix-popper-anchor-width] p-0"
-      >
-        <Command
-          key={forceUpdateKey}
-          className="max-h-[200px] w-full sm:max-h-[270px]"
-          shouldFilter={!isAsync}
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className={cn("w-full justify-between", className)}
+          disabled={disabled}
         >
-          <CommandList>
-            <div className="bg-popover sticky top-0 z-10">
-              <CommandInput
-                ref={inputRef}
-                placeholder={searchPlaceholder}
-                value={searchQuery}
-                onValueChange={setSearchQuery}
-              />
-            </div>
+          {value ? (
+            options.find((option) => option.value === value)?.label
+          ) : (
+            <span className="text-muted-foreground">
+              {placeholder || "Select an option"}
+            </span>
+          )}
 
-            {isLoading ? (
-              <div className="text-muted-foreground py-6 text-center text-sm">
-                <LoaderCircle className="mx-auto mb-1 size-4 animate-spin opacity-60" />
-                <p>Searching...</p>
-              </div>
-            ) : (
-              <>
-                {displayOptions.length > 0 ? (
-                  <CommandGroup>
-                    {displayOptions.map((option, index) => (
-                      <CommandItem
-                        key={option.value || index}
-                        onSelect={() => handleSelect(option)}
-                        disabled={option.disabled}
-                      >
-                        {renderOption
-                          ? renderOption(
-                              option,
-                              selectedOptions.some(
-                                (o) => o.value === option.value,
-                              ),
-                            )
-                          : defaultRenderOption(
-                              option,
-                              selectedOptions.some(
-                                (o) => o.value === option.value,
-                              ),
-                            )}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                ) : (
-                  <CommandEmpty>{emptyMessage}</CommandEmpty>
-                )}
-              </>
-            )}
+          {value && !required ? (
+            <Trash
+              className="text-destructive size-4 shrink-0 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                onValueChange("");
+              }}
+            />
+          ) : (
+            <ChevronDown className="text-muted-foreground shrink-0" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+        <Command>
+          <CommandInput
+            placeholder={inputPlaceholder || "Search"}
+            className="h-9"
+          />
+          <CommandList>
+            <CommandEmpty>{emptyText || "No options found"}</CommandEmpty>
+            <CommandGroup>
+              {options.map((option) => (
+                <CommandItem
+                  key={option.value}
+                  value={option.value}
+                  onSelect={(currentValue) => {
+                    onValueChange(currentValue === value ? "" : currentValue);
+                    setOpen(false);
+                  }}
+                >
+                  {option.label}
+                  <Check
+                    className={cn(
+                      "ml-auto",
+                      value === option.value ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
           </CommandList>
         </Command>
       </PopoverContent>
     </Popover>
   );
 }
+
+type SelectFancyMultipleProps = {
+  options: SelectFancyOption[];
+  value: string[];
+  onValueChange: (value: string[]) => void;
+} & SelectFancyBaseProps;
+
+function SelectFancyMultiple({
+  options,
+  value,
+  onValueChange,
+  placeholder,
+  emptyText,
+  inputPlaceholder,
+  className,
+  disabled,
+  required,
+}: SelectFancyMultipleProps) {
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = useCallback(
+    (optionValue: string) => {
+      const updatedSelected = value.includes(optionValue)
+        ? value.filter((item) => item !== optionValue)
+        : [...value, optionValue];
+      onValueChange(updatedSelected);
+    },
+    [value, onValueChange],
+  );
+
+  const selectedLabels = useMemo(
+    () =>
+      value
+        .map(
+          (optionValue) =>
+            options.find((option) => option.value === optionValue)?.label,
+        )
+        .filter(Boolean)
+        .join(", "),
+    [value, options],
+  );
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className={cn("w-full justify-between", className)}
+          disabled={disabled}
+        >
+          <span className="truncate">
+            {value.length > 0 ? (
+              selectedLabels
+            ) : (
+              <span className="text-muted-foreground">
+                {placeholder || "Select an option"}
+              </span>
+            )}
+          </span>
+          {value.length > 0 && !required ? (
+            <Trash
+              className="text-destructive size-4 shrink-0 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                onValueChange([]);
+              }}
+            />
+          ) : (
+            <ChevronDown className="text-muted-foreground shrink-0" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+        <Command>
+          <CommandInput
+            placeholder={inputPlaceholder || "Search"}
+            className="h-9"
+          />
+          <CommandList>
+            <CommandEmpty>{emptyText || "No options found"}</CommandEmpty>
+            <CommandGroup>
+              {options.map((option) => (
+                <CommandItem
+                  key={option.value}
+                  value={option.value}
+                  onSelect={() => handleSelect(option.value)}
+                >
+                  {option.label}
+                  <Check
+                    className={cn(
+                      "ml-auto",
+                      value.includes(option.value)
+                        ? "opacity-100"
+                        : "opacity-0",
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+type SelectFancyAsyncProps<T> = {
+  onSearch: (query?: string) => Promise<T[]>;
+  getInitialOptions?: () => Promise<T[]>;
+  preload?: boolean;
+  filterFn?: (option: T, query: string) => boolean;
+  renderOption: (option: T) => React.ReactNode;
+  getOptionValue: (option: T) => string;
+  getDisplayValue: (option: T) => React.ReactNode;
+  value: string;
+  onValueChange: (value: string) => void;
+} & SelectFancyBaseProps;
+
+function SelectFancyAsync<T>({
+  onSearch,
+  getInitialOptions,
+  preload,
+  filterFn,
+  renderOption,
+  getOptionValue,
+  getDisplayValue,
+  emptyText,
+  placeholder,
+  value,
+  onValueChange,
+  disabled = false,
+  className,
+  inputPlaceholder,
+  required,
+}: SelectFancyAsyncProps<T>) {
+  const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState<T[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(value);
+  const [selectedOption, setSelectedOption] = useState<T | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, preload ? 0 : 300);
+  const [originalOptions, setOriginalOptions] = useState<T[]>([]);
+
+  useEffect(() => {
+    setMounted(true);
+    setSelectedValue(value);
+  }, [value]);
+
+  // Initialize selectedOption when options are loaded and value exists
+  useEffect(() => {
+    if (value && options.length > 0) {
+      const option = options.find((opt) => getOptionValue(opt) === value);
+      if (option) {
+        setSelectedOption(option);
+      }
+    }
+  }, [value, options, getOptionValue]);
+
+  // Effect for initial fetch
+  useEffect(() => {
+    const initializeOptions = async () => {
+      try {
+        setLoading(true);
+        const data = await (getInitialOptions
+          ? getInitialOptions()
+          : onSearch(value));
+        setOriginalOptions(data);
+        setOptions(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (!mounted) {
+      initializeOptions();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, onSearch, getInitialOptions]);
+
+  useEffect(() => {
+    const searchOptions = async () => {
+      try {
+        setLoading(true);
+        const data = await onSearch(debouncedSearchTerm);
+        setOriginalOptions(data);
+        setOptions(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (!mounted) {
+      searchOptions();
+    } else if (!preload) {
+      searchOptions();
+    } else if (preload) {
+      if (debouncedSearchTerm) {
+        setOptions(
+          originalOptions.filter((option) =>
+            filterFn ? filterFn(option, debouncedSearchTerm) : true,
+          ),
+        );
+      } else {
+        setOptions(originalOptions);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onSearch, debouncedSearchTerm, mounted, preload, filterFn]);
+
+  const handleSelect = useCallback(
+    (currentValue: string) => {
+      const newValue = currentValue === selectedValue ? "" : currentValue;
+      setSelectedValue(newValue);
+      setSelectedOption(
+        options.find((option) => getOptionValue(option) === newValue) || null,
+      );
+      onValueChange(newValue);
+      setOpen(false);
+    },
+    [selectedValue, onValueChange, options, getOptionValue],
+  );
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className={cn("w-full justify-between", className)}
+          disabled={disabled}
+        >
+          <span className="truncate">
+            {selectedOption ? (
+              getDisplayValue(selectedOption)
+            ) : (
+              <span className="text-muted-foreground">
+                {placeholder || "Select an option"}
+              </span>
+            )}
+          </span>
+          {selectedValue && !required ? (
+            <Trash
+              className="text-destructive size-4 shrink-0 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                setSelectedValue("");
+                setSelectedOption(null);
+                onValueChange("");
+              }}
+            />
+          ) : (
+            <ChevronDown className="text-muted-foreground shrink-0" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+        <Command shouldFilter={false}>
+          <div className="relative">
+            <CommandInput
+              className="relative"
+              placeholder={inputPlaceholder || "Search"}
+              value={searchTerm}
+              onValueChange={(value) => {
+                setSearchTerm(value);
+              }}
+            />
+            {loading && open && (
+              <div className="absolute top-1/2 right-2 flex -translate-y-1/2 transform items-center opacity-50">
+                <Loader2 className="animate-spin" />
+              </div>
+            )}
+          </div>
+
+          <CommandList>
+            {!loading && options.length === 0 && (
+              <CommandEmpty>{emptyText ?? "No options found"}</CommandEmpty>
+            )}
+            <CommandGroup>
+              {options.map((option) => (
+                <CommandItem
+                  key={getOptionValue(option)}
+                  value={getOptionValue(option)}
+                  onSelect={handleSelect}
+                >
+                  {renderOption(option)}
+                  <Check
+                    className={cn(
+                      "ml-auto",
+                      selectedValue === getOptionValue(option)
+                        ? "opacity-100"
+                        : "opacity-0",
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+export {
+  SelectFancy,
+  type SelectFancyProps,
+  SelectFancyMultiple,
+  type SelectFancyMultipleProps,
+  SelectFancyAsync,
+  type SelectFancyAsyncProps,
+  type SelectFancyOption,
+};
