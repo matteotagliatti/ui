@@ -109,6 +109,28 @@
       ]
     },
     {
+      "name": "tags",
+      "type": "registry:component",
+      "title": "Tags",
+      "description": "A tags component",
+      "categories": ["input"],
+      "usage": true,
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "utils",
+        "command",
+        "popover",
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/tags.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "button-loading",
       "type": "registry:component",
       "title": "Button Loading",
