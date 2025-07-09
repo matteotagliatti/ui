@@ -1,9 +1,9 @@
-import { SelectOption } from "@/registry/default/components/select-fancy";
+import { SelectFancyOption } from "@/registry/default/components/select-fancy";
 import { NextRequest, NextResponse } from "next/server";
 
 // This is a mock database of options. In a real application,
 // you would likely fetch this from a database or external API
-const mockOptions: SelectOption[] = [
+const mockOptions: SelectFancyOption[] = [
   { value: "4", label: "Option 4" },
   { value: "5", label: "Option 5" },
   { value: "6", label: "Option 6" },
