@@ -178,6 +178,21 @@
       ]
     },
     {
+      "name": "input-time",
+      "type": "registry:component",
+      "title": "Input Time",
+      "description": "A time input component",
+      "categories": ["input"],
+      "usage": true,
+      "registryDependencies": ["utils", "input"],
+      "files": [
+        {
+          "path": "registry/default/components/input-time.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "switch-fancy",
       "type": "registry:component",
       "title": "Switch Fancy",
