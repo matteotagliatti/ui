@@ -62,7 +62,10 @@ function SelectFancy({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn(
+            "w-full justify-between has-[>span>svg]:px-3",
+            className,
+          )}
           disabled={disabled}
         >
           {value ? (
@@ -74,14 +77,18 @@ function SelectFancy({
           )}
 
           {value && !required ? (
-            <Trash
-              className="text-destructive size-4 shrink-0 cursor-pointer"
+            <span
+              role="button"
+              className="cursor-pointer"
+              aria-label="Clear selection"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
                 onValueChange("");
               }}
-            />
+            >
+              <Trash className="text-destructive size-4 shrink-0 cursor-pointer" />
+            </span>
           ) : (
             <ChevronDown className="text-muted-foreground shrink-0" />
           )}
@@ -170,7 +177,10 @@ function SelectFancyMultiple({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn(
+            "w-full justify-between has-[>span>svg]:px-3",
+            className,
+          )}
           disabled={disabled}
         >
           <span className="truncate">
@@ -183,14 +193,18 @@ function SelectFancyMultiple({
             )}
           </span>
           {value.length > 0 && !required ? (
-            <Trash
-              className="text-destructive size-4 shrink-0 cursor-pointer"
+            <span
+              role="button"
+              aria-label="Clear selection"
+              className="cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
                 onValueChange([]);
               }}
-            />
+            >
+              <Trash className="text-destructive size-4 shrink-0 cursor-pointer" />
+            </span>
           ) : (
             <ChevronDown className="text-muted-foreground shrink-0" />
           )}
@@ -359,7 +373,10 @@ function SelectFancyAsync<T>({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn("w-full justify-between", className)}
+          className={cn(
+            "w-full justify-between has-[>span>svg]:px-3",
+            className,
+          )}
           disabled={disabled}
         >
           <span className="truncate">
@@ -372,8 +389,10 @@ function SelectFancyAsync<T>({
             )}
           </span>
           {selectedValue && !required ? (
-            <Trash
-              className="text-destructive size-4 shrink-0 cursor-pointer"
+            <span
+              role="button"
+              aria-label="Clear selection"
+              className="cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -381,7 +400,9 @@ function SelectFancyAsync<T>({
                 setSelectedOption(null);
                 onValueChange("");
               }}
-            />
+            >
+              <Trash className="text-destructive size-4 shrink-0 cursor-pointer" />
+            </span>
           ) : (
             <ChevronDown className="text-muted-foreground shrink-0" />
           )}
