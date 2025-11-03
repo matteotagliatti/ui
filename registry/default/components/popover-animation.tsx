@@ -51,12 +51,12 @@ function usePopoverLogic() {
   return { isOpen, openPopover, closePopover, uniqueId };
 }
 
-interface PopoverRootProps {
+interface PopoverProps {
   children: ReactNode;
   className?: string;
 }
 
-function PopoverRoot({ children, className }: PopoverRootProps) {
+function Popover({ children, className }: PopoverProps) {
   const popoverLogic = usePopoverLogic();
 
   return (
@@ -294,7 +294,7 @@ function PopoverButton({ children, onClick, className }: PopoverButtonProps) {
 }
 
 export {
-  PopoverRoot,
+  Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverForm,

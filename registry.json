@@ -17,21 +17,6 @@
       ]
     },
     {
-      "name": "input-fancy",
-      "type": "registry:component",
-      "title": "Input Fancy",
-      "description": "A fancy input component",
-      "categories": ["input"],
-      "usage": true,
-      "registryDependencies": ["utils", "input"],
-      "files": [
-        {
-          "path": "registry/default/components/input-fancy.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "input-datetime",
       "type": "registry:component",
       "title": "Input Datetime",
@@ -146,33 +131,16 @@
       ]
     },
     {
-      "name": "button-effect",
+      "name": "pill",
       "type": "registry:component",
-      "title": "Button Effect",
-      "description": "A button effect component",
-      "categories": ["button"],
+      "title": "Pill",
+      "description": "A pill component",
+      "categories": ["badge"],
       "usage": true,
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["utils", "badge", "avatar", "button"],
       "files": [
         {
-          "path": "registry/default/components/button-effect.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "button-group",
-      "type": "registry:component",
-      "title": "Button Group",
-      "description": "A button group component",
-      "categories": ["button"],
-      "usage": true,
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["button", "utils"],
-      "files": [
-        {
-          "path": "registry/default/components/button-group.tsx",
+          "path": "registry/default/components/pill.tsx",
           "type": "registry:component"
         }
       ]
@@ -361,6 +329,21 @@
       "files": [
         {
           "path": "registry/default/components/transition-panel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "look",
+      "type": "registry:component",
+      "title": "Look",
+      "description": "A look component",
+      "categories": ["other"],
+      "usage": true,
+      "registryDependencies": ["utils", "hover-card"],
+      "files": [
+        {
+          "path": "registry/default/components/look.tsx",
           "type": "registry:component"
         }
       ]

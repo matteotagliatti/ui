@@ -25,7 +25,7 @@ export default function DialogStackDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
+        <Button>Open Dialog Stack</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -15,7 +15,7 @@ export default function DialogResponsiveDemo() {
   return (
     <DialogResponsive>
       <DialogResponsiveTrigger asChild>
-        <Button>Open responsive dialog</Button>
+        <Button>Open Responsive Dialog</Button>
       </DialogResponsiveTrigger>
       <DialogResponsiveContent>
         <DialogResponsiveHeader>

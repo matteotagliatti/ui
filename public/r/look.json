@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "look",
+  "type": "registry:component",
+  "title": "Look",
+  "description": "A look component",
+  "registryDependencies": [
+    "utils",
+    "hover-card"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/look.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport type { ComponentProps } from \"react\";\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@/components/ui/hover-card\";\n\nexport type LookProps = ComponentProps<typeof HoverCard>;\n\nexport const Look = (props: LookProps) => {\n  return <HoverCard {...props} />;\n};\n\nexport type LookContentProps = ComponentProps<typeof HoverCardContent>;\n\nexport const LookContent = (props: LookContentProps) => (\n  <HoverCardContent {...props} />\n);\n\nexport type LookTriggerProps = ComponentProps<typeof HoverCardTrigger>;\n\nexport const LookTrigger = (props: LookTriggerProps) => (\n  <HoverCardTrigger {...props} />\n);\n\nexport type LookTitleProps = ComponentProps<\"p\">;\n\nexport const LookTitle = ({ className, ...props }: LookTitleProps) => {\n  return (\n    <p className={cn(\"truncate text-sm font-semibold\", className)} {...props} />\n  );\n};\n\nexport type LookDescriptionProps = ComponentProps<\"p\">;\n\nexport const LookDescription = ({\n  className,\n  ...props\n}: LookDescriptionProps) => {\n  return (\n    <p\n      className={cn(\"text-muted-foreground line-clamp-2 text-sm\", className)}\n      {...props}\n    />\n  );\n};\n\nexport type LookImageProps = ComponentProps<\"img\">;\n\nexport const LookImage = ({ className, alt, ...props }: LookImageProps) => (\n  // biome-ignore lint/performance/noImgElement: \"Kibo UI is framework agnostic\"\n  // eslint-disable-next-line @next/next/no-img-element\n  <img\n    alt={alt ?? \"\"}\n    className={cn(\n      \"mb-4 aspect-[120/63] w-full rounded-md border object-cover\",\n      className,\n    )}\n    {...props}\n  />\n);\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "other"
+  ]
+}
